@@ -9,10 +9,11 @@
 import UIKit
 import Alamofire
 
-class ArticleViewController: UIViewController, MAMapViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
-    var mapView:MAMapView!
-    var imageWidth:CGFloat = 0
+    var mapViewController:ArticleMapViewController?
+    
+    var imageWidth:CGFloat = 0.0
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -22,33 +23,36 @@ class ArticleViewController: UIViewController, MAMapViewDelegate,UICollectionVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var attributes:[NSObject:AnyObject] = [NSForegroundColorAttributeName:UIColor(red:1.0, green: 1.0, blue: 1.0, alpha: 1)]
-        if let font = UIFont(name: "Helvetica-Bold", size: 20) {
-            attributes[NSFontAttributeName] = font
-        }
-
-        self.navigationController?.navigationBar.titleTextAttributes = attributes;
         
         // Do any additional setup after loading the view.
-        MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a";
-        mapView = MAMapView(frame: CGRectMake(0, 65, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-65))
-        mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
-        mapView.showsCompass = false
-        mapView.showsScale = true
-        mapView.scaleOrigin = CGPointMake(100, mapView.frame.size.height-20)
-        mapView.delegate = self
-        self.view.addSubview(mapView)
-        mapView.hidden = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        listBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
+        listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
+        mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
+        mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
+        listBtn.selected = true
+        
         println(UIScreen.mainScreen().bounds.size.width)
-        imageWidth = (UIScreen.mainScreen().bounds.size.width - 10) / 2
+        imageWidth = (UIScreen.mainScreen().bounds.size.width - 20) / 2
         println("width is \(imageWidth)")
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (mapViewController == nil){
+            mapViewController = ArticleMapViewController()
+            mapViewController?.view.frame = CGRectMake(0, collectionView.frame.origin.y,collectionView.frame.size.width, collectionView.frame.size.height)
+            mapViewController!.view.backgroundColor = UIColor.redColor()
+            self.addChildViewController(mapViewController!)
+            self.view.addSubview(mapViewController!.view)
+            mapViewController!.view.hidden = true
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,12 +79,34 @@ class ArticleViewController: UIViewController, MAMapViewDelegate,UICollectionVie
             view.removeFromSuperview()
         }
         articleCell.contentView.addSubview(articleView)
+        articleCell.frame.size = CGSizeMake(imageWidth, imageWidth)
         return articleCell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(imageWidth, imageWidth);
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 5, 0, 5);//上 左 下 右
+    }
+    
+    @IBAction func ArticleListBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = true
+        sender.selected = true
+        mapBtn.selected = false
+    }
+    
+    @IBAction func MapBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = false
+        sender.selected = true
+        listBtn.selected = false
+    }
+    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
        return 5

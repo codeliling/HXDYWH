@@ -14,7 +14,6 @@
 		DB1BF9061B0D9104001DA2FC /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB1BF9041B0D9104001DA2FC /* AMap.bundle */; };
 		DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E1F071ADF542A0049876D /* ArticleView.swift */; };
 		DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */; };
-		DB2EB8ED1AC107500099934F /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8EC1AC107500099934F /* MAMapKit.framework */; };
 		DB2EB8EF1AC107CD0099934F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8EE1AC107CD0099934F /* UIKit.framework */; };
 		DB2EB8F11AC107D80099934F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8F01AC107D80099934F /* Foundation.framework */; };
 		DB2EB8F31AC107E40099934F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8F21AC107E40099934F /* CoreGraphics.framework */; };
@@ -26,6 +25,7 @@
 		DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8FE1AC108720099934F /* libz.dylib */; };
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
+		DB31E3951B12B3D4004F8319 /* CDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB31E3941B12B3D4004F8319 /* CDView.swift */; };
 		DB38941D1AB678B400D6B4A9 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38941C1AB678B400D6B4A9 /* Alamofire.swift */; };
 		DB3894491AB6BB7F00D6B4A9 /* ROJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */; };
 		DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894471AB6BB7F00D6B4A9 /* SwiftyJSON.swift */; };
@@ -42,6 +42,16 @@
 		DBBE718E1AAEC9F90010681A /* RAMTransitionItemAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71881AAEC9F90010681A /* RAMTransitionItemAnimation.swift */; };
 		DBBE718F1AAEC9F90010681A /* RAMItemAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71891AAEC9F90010681A /* RAMItemAnimationProtocol.swift */; };
 		DBBE71911AAECADA0010681A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71901AAECADA0010681A /* HomeTabBarController.swift */; };
+		DBFA4F7E1B0DC111007D8F9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4F801B0DC111007D8F9B /* InfoPlist.strings */; };
+		DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */; };
+		DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */; };
+		DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */; };
+		DBFA4F8F1B0F1586007D8F9B /* VideoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */; };
+		DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */; };
+		DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */; };
+		DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */; };
+		DBFA4F971B0F18DE007D8F9B /* VideoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F961B0F18DE007D8F9B /* VideoCellView.swift */; };
+		DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F981B0F2423007D8F9B /* HXWHViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +119,7 @@
 		DB1BF8FE1B0D9000001DA2FC /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		DB1BF9001B0D9000001DA2FC /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		DB1BF9011B0D9000001DA2FC /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		DB1BF9041B0D9104001DA2FC /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		DB1BF9041B0D9104001DA2FC /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = dywh/AMap.bundle; sourceTree = "<group>"; };
 		DB1BF9051B0D9104001DA2FC /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		DB2E1F071ADF542A0049876D /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +136,7 @@
 		DB2EB9001AC1087E0099934F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DB31E3941B12B3D4004F8319 /* CDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDView.swift; sourceTree = "<group>"; };
 		DB38941B1AB678B400D6B4A9 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		DB38941C1AB678B400D6B4A9 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ROJSONObject.swift; sourceTree = "<group>"; };
@@ -148,6 +159,18 @@
 		DBBE71881AAEC9F90010681A /* RAMTransitionItemAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMTransitionItemAnimation.swift; sourceTree = "<group>"; };
 		DBBE71891AAEC9F90010681A /* RAMItemAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMItemAnimationProtocol.swift; sourceTree = "<group>"; };
 		DBBE71901AAECADA0010681A /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		DBFA4F7D1B0DC103007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		DBFA4F7F1B0DC111007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		DBFA4F811B0DC117007D8F9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = dywh/MAMapKit.framework; sourceTree = "<group>"; };
+		DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMapViewController.swift; sourceTree = "<group>"; };
+		DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMapViewController.swift; sourceTree = "<group>"; };
+		DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicMapViewController.swift; sourceTree = "<group>"; };
+		DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
+		DBFA4F961B0F18DE007D8F9B /* VideoCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCellView.swift; sourceTree = "<group>"; };
+		DBFA4F981B0F2423007D8F9B /* HXWHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HXWHViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +180,7 @@
 			files = (
 				DB2EB9051AC108A10099934F /* Security.framework in Frameworks */,
 				DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */,
+				DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */,
 				DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */,
 				DB2EB8FD1AC108650099934F /* SystemConfiguration.framework in Frameworks */,
 				DB2EB8FB1AC108400099934F /* CoreTelephony.framework in Frameworks */,
@@ -168,7 +192,6 @@
 				DB2EB8F11AC107D80099934F /* Foundation.framework in Frameworks */,
 				DB1BF8F71B0D8FE5001DA2FC /* Alamofire.framework in Frameworks */,
 				DB2EB8EF1AC107CD0099934F /* UIKit.framework in Frameworks */,
-				DB2EB8ED1AC107500099934F /* MAMapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				DB2E1F071ADF542A0049876D /* ArticleView.swift */,
+				DBFA4F961B0F18DE007D8F9B /* VideoCellView.swift */,
+				DB31E3941B12B3D4004F8319 /* CDView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -268,6 +293,8 @@
 		DBBE714D1AAE91A40010681A = {
 			isa = PBXGroup;
 			children = (
+				DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */,
+				DB1BF9041B0D9104001DA2FC /* AMap.bundle */,
 				DB1BF8E71B0D8FBB001DA2FC /* Alamofire.xcodeproj */,
 				DB2EB9061AC1090A0099934F /* framework */,
 				DBBE71581AAE91A40010681A /* dywh */,
@@ -292,7 +319,6 @@
 				DB2E1F061ADF53850049876D /* views */,
 				DBBE717B1AAEC9F80010681A /* controllers */,
 				DBBE717C1AAEC9F90010681A /* libs */,
-				DB1BF9041B0D9104001DA2FC /* AMap.bundle */,
 				DB1BF9051B0D9104001DA2FC /* Bridging-Header.h */,
 				DBBE715B1AAE91A50010681A /* AppDelegate.swift */,
 				DBBE715D1AAE91A50010681A /* ViewController.swift */,
@@ -308,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				DBBE715A1AAE91A50010681A /* Info.plist */,
+				DBFA4F801B0DC111007D8F9B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,6 +361,13 @@
 			children = (
 				DBBE71901AAECADA0010681A /* HomeTabBarController.swift */,
 				DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */,
+				DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */,
+				DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */,
+				DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */,
+				DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */,
+				DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */,
+				DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */,
+				DBFA4F981B0F2423007D8F9B /* HXWHViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -462,6 +496,7 @@
 				TargetAttributes = {
 					DBBE71551AAE91A40010681A = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = FNB4FR5EG6;
 					};
 					DBBE716A1AAE91A50010681A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -534,6 +569,7 @@
 				DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */,
 				DB1BF9061B0D9104001DA2FC /* AMap.bundle in Resources */,
 				DBBE71631AAE91A50010681A /* Images.xcassets in Resources */,
+				DBFA4F7E1B0DC111007D8F9B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,18 +590,27 @@
 				DBBE718C1AAEC9F90010681A /* RAMFumeAnimation.swift in Sources */,
 				DBBE71911AAECADA0010681A /* HomeTabBarController.swift in Sources */,
 				DBBE718B1AAEC9F90010681A /* RAMFrameItemAnimation.swift in Sources */,
+				DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */,
 				DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */,
 				DBBE718F1AAEC9F90010681A /* RAMItemAnimationProtocol.swift in Sources */,
 				DBBE718A1AAEC9F90010681A /* RAMBounceAnimation.swift in Sources */,
 				DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */,
 				DBBE718E1AAEC9F90010681A /* RAMTransitionItemAnimation.swift in Sources */,
+				DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */,
 				DB3894491AB6BB7F00D6B4A9 /* ROJSONObject.swift in Sources */,
 				DB38941D1AB678B400D6B4A9 /* Alamofire.swift in Sources */,
+				DBFA4F971B0F18DE007D8F9B /* VideoCellView.swift in Sources */,
 				DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */,
+				DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */,
 				DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */,
 				DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */,
+				DB31E3951B12B3D4004F8319 /* CDView.swift in Sources */,
 				DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */,
+				DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */,
+				DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */,
 				DBBE718D1AAEC9F90010681A /* RAMRotationAnimation.swift in Sources */,
+				DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */,
+				DBFA4F8F1B0F1586007D8F9B /* VideoMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,8 +650,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				DBBE71651AAE91A50010681A /* Base */,
+				DBFA4F7D1B0DC103007D8F9B /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		DBFA4F801B0DC111007D8F9B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBFA4F7F1B0DC111007D8F9B /* zh-Hans */,
+				DBFA4F811B0DC117007D8F9B /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -694,11 +749,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zyhndesign/Downloads,
+					"$(PROJECT_DIR)/dywh",
 				);
 				INFOPLIST_FILE = dywh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -708,6 +766,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/dywh/dywh/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -718,11 +777,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zyhndesign/Downloads,
+					"$(PROJECT_DIR)/dywh",
 				);
 				INFOPLIST_FILE = dywh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -732,6 +794,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/dywh/dywh/Bridging-Header.h";
 			};
 			name = Release;
