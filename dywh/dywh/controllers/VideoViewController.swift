@@ -10,6 +10,8 @@ import UIKit
 
 class VideoViewController: HXWHViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var mapViewController:VideoMapViewController?
+    
     @IBOutlet weak var listBtn: UIButton!
     @IBOutlet weak var mapBtn: UIButton!
     
@@ -22,10 +24,23 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
-        listBtn.selected = true
+        
 
         videoTableView.delegate = self
         videoTableView.dataSource = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (mapViewController == nil){
+            mapViewController = VideoMapViewController()
+            mapViewController?.view.frame = CGRectMake(0, videoTableView.frame.origin.y,videoTableView.frame.size.width, videoTableView.frame.size.height)
+            mapViewController!.view.backgroundColor = UIColor.redColor()
+            self.addChildViewController(mapViewController!)
+            self.view.addSubview(mapViewController!.view)
+            mapViewController!.view.hidden = true
+        }
+        listBtn.selected = true
+        mapBtn.selected = false
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,15 +73,23 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func listBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = true
         sender.selected = true
         mapBtn.selected = false
     }
     
     @IBAction func mapBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = false
         sender.selected = true
         listBtn.selected = false
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("video view did disappear")
+        mapViewController?.view.removeFromSuperview()
+        mapViewController = nil
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

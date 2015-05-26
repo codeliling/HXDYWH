@@ -121,6 +121,11 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="T0W-jK-ffm">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                                <color key="progressTintColor" red="0.8980392157" green="0.0" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -129,14 +134,18 @@
                             <constraint firstItem="zTv-Sy-X8f" firstAttribute="top" secondItem="DUw-lr-kB2" secondAttribute="bottom" id="DvR-sC-5rm"/>
                             <constraint firstItem="DUw-lr-kB2" firstAttribute="leading" secondItem="41W-W0-0Fb" secondAttribute="leadingMargin" constant="-16" id="Eij-3O-z60"/>
                             <constraint firstItem="VXs-1L-V0B" firstAttribute="leading" secondItem="rHh-Ua-9KX" secondAttribute="trailing" id="FfO-Tk-uAA"/>
+                            <constraint firstItem="zTv-Sy-X8f" firstAttribute="top" secondItem="T0W-jK-ffm" secondAttribute="bottom" id="JbX-oS-wNe"/>
                             <constraint firstItem="zTv-Sy-X8f" firstAttribute="bottom" secondItem="41W-W0-0Fb" secondAttribute="bottomMargin" id="NZV-xE-Nu1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DUw-lr-kB2" secondAttribute="trailing" constant="-16" id="OXZ-if-TGa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T0W-jK-ffm" secondAttribute="trailing" constant="-16" id="PWd-fp-J8q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zTv-Sy-X8f" secondAttribute="trailing" constant="-16" id="XKE-3k-VIl"/>
                             <constraint firstItem="DUw-lr-kB2" firstAttribute="top" secondItem="VXs-1L-V0B" secondAttribute="bottom" id="Z2t-96-etd"/>
                             <constraint firstItem="zTv-Sy-X8f" firstAttribute="top" secondItem="DUw-lr-kB2" secondAttribute="bottom" id="dw4-am-Ghm"/>
                             <constraint firstItem="zTv-Sy-X8f" firstAttribute="leading" secondItem="41W-W0-0Fb" secondAttribute="leadingMargin" constant="-16" id="fwE-EO-GuI"/>
+                            <constraint firstItem="T0W-jK-ffm" firstAttribute="leading" secondItem="41W-W0-0Fb" secondAttribute="leadingMargin" constant="-16" id="ifJ-vy-lcw"/>
                             <constraint firstItem="rHh-Ua-9KX" firstAttribute="top" secondItem="g9u-Cf-QMe" secondAttribute="bottom" id="lku-AV-b6t"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VXs-1L-V0B" secondAttribute="trailing" constant="-16" id="m56-Q1-4dL"/>
+                            <constraint firstItem="T0W-jK-ffm" firstAttribute="top" secondItem="VXs-1L-V0B" secondAttribute="bottom" constant="182" id="nd9-Tz-Z10"/>
                             <constraint firstItem="VXs-1L-V0B" firstAttribute="width" secondItem="rHh-Ua-9KX" secondAttribute="width" id="vkd-ne-d65"/>
                             <constraint firstItem="VXs-1L-V0B" firstAttribute="leading" secondItem="rHh-Ua-9KX" secondAttribute="trailing" id="zdO-ii-x6d"/>
                         </constraints>
@@ -146,19 +155,24 @@
                                 <exclude reference="VXs-1L-V0B"/>
                                 <exclude reference="zTv-Sy-X8f"/>
                                 <exclude reference="DUw-lr-kB2"/>
+                                <exclude reference="T0W-jK-ffm"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="DjG-1v-mEB"/>
-                                <exclude reference="lku-AV-b6t"/>
-                                <exclude reference="Eij-3O-z60"/>
-                                <exclude reference="OXZ-if-TGa"/>
-                                <exclude reference="Z2t-96-etd"/>
+                                <exclude reference="PWd-fp-J8q"/>
+                                <exclude reference="ifJ-vy-lcw"/>
+                                <exclude reference="nd9-Tz-Z10"/>
                                 <exclude reference="9wn-ul-B3j"/>
                                 <exclude reference="FfO-Tk-uAA"/>
                                 <exclude reference="m56-Q1-4dL"/>
                                 <exclude reference="vkd-ne-d65"/>
                                 <exclude reference="zdO-ii-x6d"/>
+                                <exclude reference="DjG-1v-mEB"/>
+                                <exclude reference="lku-AV-b6t"/>
+                                <exclude reference="Eij-3O-z60"/>
+                                <exclude reference="OXZ-if-TGa"/>
+                                <exclude reference="Z2t-96-etd"/>
                                 <exclude reference="DvR-sC-5rm"/>
+                                <exclude reference="JbX-oS-wNe"/>
                                 <exclude reference="NZV-xE-Nu1"/>
                                 <exclude reference="XKE-3k-VIl"/>
                                 <exclude reference="dw4-am-Ghm"/>
@@ -171,19 +185,24 @@
                                 <include reference="VXs-1L-V0B"/>
                                 <include reference="zTv-Sy-X8f"/>
                                 <include reference="DUw-lr-kB2"/>
+                                <include reference="T0W-jK-ffm"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="DjG-1v-mEB"/>
-                                <include reference="lku-AV-b6t"/>
-                                <include reference="Eij-3O-z60"/>
-                                <include reference="OXZ-if-TGa"/>
-                                <include reference="Z2t-96-etd"/>
+                                <include reference="PWd-fp-J8q"/>
+                                <include reference="ifJ-vy-lcw"/>
+                                <include reference="nd9-Tz-Z10"/>
                                 <include reference="9wn-ul-B3j"/>
                                 <include reference="FfO-Tk-uAA"/>
                                 <include reference="m56-Q1-4dL"/>
                                 <include reference="vkd-ne-d65"/>
                                 <include reference="zdO-ii-x6d"/>
+                                <include reference="DjG-1v-mEB"/>
+                                <include reference="lku-AV-b6t"/>
+                                <include reference="Eij-3O-z60"/>
+                                <include reference="OXZ-if-TGa"/>
+                                <include reference="Z2t-96-etd"/>
                                 <include reference="DvR-sC-5rm"/>
+                                <include reference="JbX-oS-wNe"/>
                                 <include reference="NZV-xE-Nu1"/>
                                 <include reference="XKE-3k-VIl"/>
                                 <include reference="dw4-am-Ghm"/>
@@ -196,6 +215,7 @@
                     <connections>
                         <outlet property="listBtn" destination="rHh-Ua-9KX" id="bz1-V4-z2V"/>
                         <outlet property="mapBtn" destination="VXs-1L-V0B" id="cqA-Q2-LH7"/>
+                        <outlet property="musicProgressView" destination="T0W-jK-ffm" id="EWh-2S-YYq"/>
                         <outlet property="musicView" destination="DUw-lr-kB2" id="GiY-sZ-u3g"/>
                         <outlet property="tableView" destination="zTv-Sy-X8f" id="Rtb-gZ-RXD"/>
                     </connections>

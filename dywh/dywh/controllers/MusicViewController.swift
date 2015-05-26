@@ -10,6 +10,8 @@ import UIKit
 
 class MusicViewController: HXWHViewController {
     
+     var mapViewController:MusicMapViewController?
+    
     @IBOutlet weak var listBtn: UIButton!
     
     @IBOutlet weak var mapBtn: UIButton!
@@ -27,7 +29,9 @@ class MusicViewController: HXWHViewController {
     
     var musicName:String?
     var musicAuthorName:String?
-    var cdView:CDView!
+    var cdView:UIImageView!
+    
+    @IBOutlet weak var musicProgressView: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +40,6 @@ class MusicViewController: HXWHViewController {
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
-        listBtn.selected = true
         
         musicView.layer.contents = UIImage(named: "videoBg2")?.CGImage
         
@@ -70,17 +73,22 @@ class MusicViewController: HXWHViewController {
         authorNameLayer.alignmentMode = kCAAlignmentCenter
         musicView.layer.addSublayer(authorNameLayer)
         
-        prePlayBtn = UIButton(frame: CGRectMake(30, 80, 30, 30))
+        prePlayBtn = UIButton(frame: CGRectMake(40, 80, 30, 30))
         prePlayBtn.addTarget(self, action: "preBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
         prePlayBtn.setBackgroundImage(UIImage(named: "musicPrePlay"), forState: UIControlState.Normal)
         musicView.addSubview(prePlayBtn)
         
-        nextPlayBtn = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width - 60, 80, 30, 30))
+        nextPlayBtn = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width - 70, 80, 30, 30))
         nextPlayBtn.addTarget(self, action: "nextBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
         nextPlayBtn.setBackgroundImage(UIImage(named: "musicNextPlay"), forState: UIControlState.Normal)
         musicView.addSubview(nextPlayBtn)
         
-        cdView = CDView(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 45, 55, 100, 100), bgImage: UIImage(named: "articleImage")!)
+        cdView = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 45, 55, 100, 100))
+        cdView.image = UIImage(named: "articleImage")!
+        cdView.layer.cornerRadius =  cdView.frame.size.width / 2
+        cdView.clipsToBounds = true
+        cdView.layer.borderWidth = 5.0
+        cdView.layer.borderColor = UIColor.blackColor().CGColor
         musicView.addSubview(cdView)
         
         var playLayer:CALayer = CALayer()
@@ -89,12 +97,27 @@ class MusicViewController: HXWHViewController {
         musicView.layer.addSublayer(playLayer)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if (mapViewController == nil){
+            mapViewController = MusicMapViewController()
+            mapViewController?.view.frame = CGRectMake(0, musicView.frame.origin.y,musicView.frame.size.width, musicView.frame.size.height + tableView.frame.size.height)
+            mapViewController!.view.backgroundColor = UIColor.redColor()
+            self.addChildViewController(mapViewController!)
+            self.view.addSubview(mapViewController!.view)
+            mapViewController!.view.hidden = true
+        }
+        listBtn.selected = true
+        mapBtn.selected = false
+    }
+    
     @IBAction func listBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = true
         sender.selected = true
         mapBtn.selected = false
     }
     
     @IBAction func mapBtnClick(sender: UIButton) {
+        mapViewController!.view.hidden = false
         sender.selected = true
         listBtn.selected = false
     }
@@ -113,6 +136,13 @@ class MusicViewController: HXWHViewController {
     
     func nextBtnClick(target:UIButton){
     
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("music view did disappear")
+        mapViewController?.view.removeFromSuperview()
+        mapViewController = nil
     }
     
     override func didReceiveMemoryWarning() {

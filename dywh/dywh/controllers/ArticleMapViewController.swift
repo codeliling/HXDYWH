@@ -14,17 +14,31 @@ class ArticleMapViewController: UIViewController,MAMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a"
-        mapView = MAMapView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
-        mapView.showsUserLocation = true
-        mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
-        mapView.showsCompass = false
-        mapView.showsScale = true
-        mapView.scaleOrigin = CGPointMake(100, mapView.frame.size.height-20)
-        mapView.delegate = self
-        self.view.addSubview(mapView)
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if mapView == nil{
+            MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a"
+            mapView = MAMapView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
+            mapView.showsUserLocation = true
+            mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
+            mapView.showsCompass = false
+            mapView.showsScale = true
+            mapView.scaleOrigin = CGPointMake(100, mapView.frame.size.height-20)
+            mapView.delegate = self
+            self.view.addSubview(mapView)
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        mapView.showsUserLocation = false
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        mapView.delegate = nil
+        mapView.removeFromSuperview()
+        mapView = nil
+        println("remove article map...")
     }
     
     override func didReceiveMemoryWarning() {

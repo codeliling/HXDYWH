@@ -33,7 +33,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
-        listBtn.selected = true
+        
         
         println(UIScreen.mainScreen().bounds.size.width)
         imageWidth = (UIScreen.mainScreen().bounds.size.width - 20) / 2
@@ -50,7 +50,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
         }
-        
+        listBtn.selected = true
+        mapBtn.selected = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,6 +115,14 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("article view did disappear")
+        //mapViewController?.removeFromParentViewController()
+        //mapViewController?.view.removeFromSuperview()
+        //mapViewController = nil
     }
     
     /*

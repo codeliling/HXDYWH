@@ -25,7 +25,6 @@
 		DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8FE1AC108720099934F /* libz.dylib */; };
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
-		DB31E3951B12B3D4004F8319 /* CDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB31E3941B12B3D4004F8319 /* CDView.swift */; };
 		DB38941D1AB678B400D6B4A9 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38941C1AB678B400D6B4A9 /* Alamofire.swift */; };
 		DB3894491AB6BB7F00D6B4A9 /* ROJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */; };
 		DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894471AB6BB7F00D6B4A9 /* SwiftyJSON.swift */; };
@@ -136,7 +135,6 @@
 		DB2EB9001AC1087E0099934F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DB31E3941B12B3D4004F8319 /* CDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDView.swift; sourceTree = "<group>"; };
 		DB38941B1AB678B400D6B4A9 /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
 		DB38941C1AB678B400D6B4A9 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ROJSONObject.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 			children = (
 				DB2E1F071ADF542A0049876D /* ArticleView.swift */,
 				DBFA4F961B0F18DE007D8F9B /* VideoCellView.swift */,
-				DB31E3941B12B3D4004F8319 /* CDView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -604,7 +601,6 @@
 				DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */,
 				DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */,
 				DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */,
-				DB31E3951B12B3D4004F8319 /* CDView.swift in Sources */,
 				DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */,
 				DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */,
 				DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */,
