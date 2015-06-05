@@ -69,14 +69,14 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var articleCell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell1", forIndexPath: indexPath) as UICollectionViewCell
+        var articleCell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell1", forIndexPath: indexPath) as! UICollectionViewCell
        
         //articleCell.frame.size = CGSizeMake(imageWidth, imageWidth)
         
         var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth), imageName: "articleImage", titleName: "测试")
         
         for(var index = 0;index < articleCell.contentView.subviews.count; index++){
-            let view = articleCell.contentView.subviews[index] as UIView
+            let view = articleCell.contentView.subviews[index] as! UIView
             view.removeFromSuperview()
         }
         articleCell.contentView.addSubview(articleView)
