@@ -12,4 +12,5 @@
 #import <MAMapKit/MAMapKit.h>
 #import "libs/Toast/UIView+Toast.h"
 #import "libs/BaiduStatistic/BaiduMobStat.h"
+#import "libs/AudioStream/AudioStreamer.h"
 #endif

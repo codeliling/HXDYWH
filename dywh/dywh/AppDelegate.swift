@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statTracker.sessionResumeInterval = 10
         statTracker.enableDebugOn = true
         statTracker.startWithAppId("a358344ffc")
+        
+        MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a"
+        
         return true
     }
 

@@ -23,26 +23,25 @@
 		DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8FE1AC108720099934F /* libz.dylib */; };
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
-		DB3894491AB6BB7F00D6B4A9 /* ROJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */; };
-		DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3894471AB6BB7F00D6B4A9 /* SwiftyJSON.swift */; };
+		DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; };
+		DBB559591B21E5F00069089E /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DBB5595C1B21E5F60069089E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559451B21E5C10069089E /* Alamofire.framework */; };
+		DBB5595D1B21E5F60069089E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559451B21E5C10069089E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DBB559611B21E8810069089E /* VideoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559601B21E8810069089E /* VideoMapViewController.swift */; };
+		DBB559661B21E96D0069089E /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB559651B21E96D0069089E /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DBB559681B21E9C60069089E /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559671B21E9C60069089E /* ArticleModel.swift */; };
+		DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559691B21EB640069089E /* MusicModel.swift */; };
+		DBB5596C1B21EB880069089E /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5596B1B21EB880069089E /* VideoModel.swift */; };
 		DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715B1AAE91A50010681A /* AppDelegate.swift */; };
 		DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715D1AAE91A50010681A /* ViewController.swift */; };
 		DBBE71611AAE91A50010681A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBE715F1AAE91A50010681A /* Main.storyboard */; };
 		DBBE71631AAE91A50010681A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBE71621AAE91A50010681A /* Images.xcassets */; };
 		DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBE71641AAE91A50010681A /* LaunchScreen.xib */; };
 		DBBE71721AAE91A50010681A /* dywhTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71711AAE91A50010681A /* dywhTests.swift */; };
-		DBBE718A1AAEC9F90010681A /* RAMBounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71801AAEC9F90010681A /* RAMBounceAnimation.swift */; };
-		DBBE718B1AAEC9F90010681A /* RAMFrameItemAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71821AAEC9F90010681A /* RAMFrameItemAnimation.swift */; };
-		DBBE718C1AAEC9F90010681A /* RAMFumeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71841AAEC9F90010681A /* RAMFumeAnimation.swift */; };
-		DBBE718D1AAEC9F90010681A /* RAMRotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71861AAEC9F90010681A /* RAMRotationAnimation.swift */; };
-		DBBE718E1AAEC9F90010681A /* RAMTransitionItemAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71881AAEC9F90010681A /* RAMTransitionItemAnimation.swift */; };
-		DBBE718F1AAEC9F90010681A /* RAMItemAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71891AAEC9F90010681A /* RAMItemAnimationProtocol.swift */; };
-		DBBE71911AAECADA0010681A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71901AAECADA0010681A /* HomeTabBarController.swift */; };
 		DBFA4F7E1B0DC111007D8F9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4F801B0DC111007D8F9B /* InfoPlist.strings */; };
 		DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */; };
 		DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */; };
 		DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */; };
-		DBFA4F8F1B0F1586007D8F9B /* VideoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */; };
 		DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */; };
 		DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */; };
 		DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */; };
@@ -100,6 +99,20 @@
 			remoteGlobalIDString = A0026E9A19C9BFBC004DE0C6;
 			remoteInfo = HanekeDemo;
 		};
+		DBB5595A1B21E5F00069089E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBB5594C1B21E5CA0069089E /* Haneke.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A095C9551980418C00CD0F4C;
+			remoteInfo = Haneke;
+		};
+		DBB5595E1B21E5F60069089E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBB5593D1B21E5C10069089E /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
 		DBBE716C1AAE91A50010681A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DBBE714E1AAE91A40010681A /* Project object */;
@@ -116,6 +129,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DBB559591B21E5F00069089E /* Haneke.framework in Embed Frameworks */,
+				DBB5595D1B21E5F60069089E /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,11 +158,14 @@
 		DB2EB9001AC1087E0099934F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ROJSONObject.swift; sourceTree = "<group>"; };
-		DB3894461AB6BB7F00D6B4A9 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
-		DB3894471AB6BB7F00D6B4A9 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		DBB5593D1B21E5C10069089E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../../OpenSource/swift/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		DBB5594C1B21E5CA0069089E /* Haneke.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Haneke.xcodeproj; path = ../../../OpenSource/swift/HanekeSwift/Haneke.xcodeproj; sourceTree = "<group>"; };
+		DBB559601B21E8810069089E /* VideoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMapViewController.swift; sourceTree = "<group>"; };
+		DBB559641B21E96D0069089E /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		DBB559651B21E96D0069089E /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		DBB559671B21E9C60069089E /* ArticleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
+		DBB559691B21EB640069089E /* MusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		DBB5596B1B21EB880069089E /* VideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		DBBE71561AAE91A40010681A /* dywh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dywh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE715A1AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE715B1AAE91A50010681A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,20 +176,12 @@
 		DBBE716B1AAE91A50010681A /* dywhTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dywhTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE71701AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE71711AAE91A50010681A /* dywhTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dywhTests.swift; sourceTree = "<group>"; };
-		DBBE71801AAEC9F90010681A /* RAMBounceAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMBounceAnimation.swift; sourceTree = "<group>"; };
-		DBBE71821AAEC9F90010681A /* RAMFrameItemAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMFrameItemAnimation.swift; sourceTree = "<group>"; };
-		DBBE71841AAEC9F90010681A /* RAMFumeAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMFumeAnimation.swift; sourceTree = "<group>"; };
-		DBBE71861AAEC9F90010681A /* RAMRotationAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMRotationAnimation.swift; sourceTree = "<group>"; };
-		DBBE71881AAEC9F90010681A /* RAMTransitionItemAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMTransitionItemAnimation.swift; sourceTree = "<group>"; };
-		DBBE71891AAEC9F90010681A /* RAMItemAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMItemAnimationProtocol.swift; sourceTree = "<group>"; };
-		DBBE71901AAECADA0010681A /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DBFA4F7D1B0DC103007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		DBFA4F7F1B0DC111007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DBFA4F811B0DC117007D8F9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = dywh/MAMapKit.framework; sourceTree = "<group>"; };
 		DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMapViewController.swift; sourceTree = "<group>"; };
 		DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMapViewController.swift; sourceTree = "<group>"; };
 		DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicMapViewController.swift; sourceTree = "<group>"; };
 		DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */,
 				DB2EB9051AC108A10099934F /* Security.framework in Frameworks */,
 				DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */,
 				DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */,
@@ -196,6 +207,7 @@
 				DB2EB8F51AC107ED0099934F /* QuartzCore.framework in Frameworks */,
 				DB2EB8F31AC107E40099934F /* CoreGraphics.framework in Frameworks */,
 				DB2EB8F11AC107D80099934F /* Foundation.framework in Frameworks */,
+				DBB5595C1B21E5F60069089E /* Alamofire.framework in Frameworks */,
 				DB2EB8EF1AC107CD0099934F /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,16 +277,6 @@
 			name = framework;
 			sourceTree = "<group>";
 		};
-		DB3894431AB6BB7F00D6B4A9 /* ROJSON */ = {
-			isa = PBXGroup;
-			children = (
-				DB3894451AB6BB7F00D6B4A9 /* ROJSONObject.swift */,
-				DB3894461AB6BB7F00D6B4A9 /* SwiftyJSON.h */,
-				DB3894471AB6BB7F00D6B4A9 /* SwiftyJSON.swift */,
-			);
-			path = ROJSON;
-			sourceTree = "<group>";
-		};
 		DBB5593E1B21E5C10069089E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +296,25 @@
 				DBB559571B21E5CA0069089E /* HanekeDemo.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DBB559621B21E92C0069089E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				DBB559671B21E9C60069089E /* ArticleModel.swift */,
+				DBB559691B21EB640069089E /* MusicModel.swift */,
+				DBB5596B1B21EB880069089E /* VideoModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		DBB559631B21E96D0069089E /* AudioStream */ = {
+			isa = PBXGroup;
+			children = (
+				DBB559641B21E96D0069089E /* AudioStreamer.h */,
+				DBB559651B21E96D0069089E /* AudioStreamer.m */,
+			);
+			path = AudioStream;
 			sourceTree = "<group>";
 		};
 		DBBE714D1AAE91A40010681A = {
@@ -320,6 +341,7 @@
 		DBBE71581AAE91A40010681A /* dywh */ = {
 			isa = PBXGroup;
 			children = (
+				DBB559621B21E92C0069089E /* models */,
 				DB2E1F091AE09D670049876D /* cells */,
 				DB2E1F061ADF53850049876D /* views */,
 				DBBE717B1AAEC9F80010681A /* controllers */,
@@ -364,11 +386,10 @@
 		DBBE717B1AAEC9F80010681A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBBE71901AAECADA0010681A /* HomeTabBarController.swift */,
 				DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */,
 				DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */,
 				DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */,
-				DBFA4F8E1B0F1586007D8F9B /* VideoMapViewController.swift */,
+				DBB559601B21E8810069089E /* VideoMapViewController.swift */,
 				DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */,
 				DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */,
 				DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */,
@@ -380,73 +401,11 @@
 		DBBE717C1AAEC9F90010681A /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DBB559631B21E96D0069089E /* AudioStream */,
 				DB1BF8FC1B0D9000001DA2FC /* BaiduStatistic */,
 				DB1BF8FF1B0D9000001DA2FC /* Toast */,
-				DB3894431AB6BB7F00D6B4A9 /* ROJSON */,
-				DBBE717D1AAEC9F90010681A /* RAMAnimationTabBar */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		DBBE717D1AAEC9F90010681A /* RAMAnimationTabBar */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE717E1AAEC9F90010681A /* Animations */,
-				DBBE71891AAEC9F90010681A /* RAMItemAnimationProtocol.swift */,
-			);
-			path = RAMAnimationTabBar;
-			sourceTree = "<group>";
-		};
-		DBBE717E1AAEC9F90010681A /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE717F1AAEC9F90010681A /* BounceAnimation */,
-				DBBE71811AAEC9F90010681A /* FrameAnimation */,
-				DBBE71831AAEC9F90010681A /* FumeAnimation */,
-				DBBE71851AAEC9F90010681A /* RotationAnimation */,
-				DBBE71871AAEC9F90010681A /* TransitionAniamtions */,
-			);
-			path = Animations;
-			sourceTree = "<group>";
-		};
-		DBBE717F1AAEC9F90010681A /* BounceAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE71801AAEC9F90010681A /* RAMBounceAnimation.swift */,
-			);
-			path = BounceAnimation;
-			sourceTree = "<group>";
-		};
-		DBBE71811AAEC9F90010681A /* FrameAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE71821AAEC9F90010681A /* RAMFrameItemAnimation.swift */,
-			);
-			path = FrameAnimation;
-			sourceTree = "<group>";
-		};
-		DBBE71831AAEC9F90010681A /* FumeAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE71841AAEC9F90010681A /* RAMFumeAnimation.swift */,
-			);
-			path = FumeAnimation;
-			sourceTree = "<group>";
-		};
-		DBBE71851AAEC9F90010681A /* RotationAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE71861AAEC9F90010681A /* RAMRotationAnimation.swift */,
-			);
-			path = RotationAnimation;
-			sourceTree = "<group>";
-		};
-		DBBE71871AAEC9F90010681A /* TransitionAniamtions */ = {
-			isa = PBXGroup;
-			children = (
-				DBBE71881AAEC9F90010681A /* RAMTransitionItemAnimation.swift */,
-			);
-			path = TransitionAniamtions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,6 +423,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				DBB5595B1B21E5F00069089E /* PBXTargetDependency */,
+				DBB5595F1B21E5F60069089E /* PBXTargetDependency */,
 			);
 			name = dywh;
 			productName = dywh;
@@ -615,28 +576,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBBE718C1AAEC9F90010681A /* RAMFumeAnimation.swift in Sources */,
-				DBBE71911AAECADA0010681A /* HomeTabBarController.swift in Sources */,
-				DBBE718B1AAEC9F90010681A /* RAMFrameItemAnimation.swift in Sources */,
 				DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */,
 				DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */,
-				DBBE718F1AAEC9F90010681A /* RAMItemAnimationProtocol.swift in Sources */,
-				DBBE718A1AAEC9F90010681A /* RAMBounceAnimation.swift in Sources */,
+				DBB559611B21E8810069089E /* VideoMapViewController.swift in Sources */,
 				DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */,
-				DBBE718E1AAEC9F90010681A /* RAMTransitionItemAnimation.swift in Sources */,
+				DBB559681B21E9C60069089E /* ArticleModel.swift in Sources */,
 				DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */,
-				DB3894491AB6BB7F00D6B4A9 /* ROJSONObject.swift in Sources */,
 				DBFA4F971B0F18DE007D8F9B /* VideoCellView.swift in Sources */,
 				DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */,
+				DBB5596C1B21EB880069089E /* VideoModel.swift in Sources */,
 				DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */,
 				DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */,
 				DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */,
-				DB38944A1AB6BB7F00D6B4A9 /* SwiftyJSON.swift in Sources */,
 				DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */,
 				DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */,
-				DBBE718D1AAEC9F90010681A /* RAMRotationAnimation.swift in Sources */,
+				DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */,
 				DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */,
-				DBFA4F8F1B0F1586007D8F9B /* VideoMapViewController.swift in Sources */,
+				DBB559661B21E96D0069089E /* AudioStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +607,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DBB5595B1B21E5F00069089E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Haneke;
+			targetProxy = DBB5595A1B21E5F00069089E /* PBXContainerItemProxy */;
+		};
+		DBB5595F1B21E5F60069089E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire iOS";
+			targetProxy = DBB5595E1B21E5F60069089E /* PBXContainerItemProxy */;
+		};
 		DBBE716D1AAE91A50010681A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DBBE71551AAE91A40010681A /* dywh */;
@@ -788,7 +754,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/dywh/dywh/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/HXDYWH/dywh/dywh/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -816,7 +782,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/dywh/dywh/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/zyhndesign/code/git_workspace/HXDYWH/dywh/dywh/Bridging-Header.h";
 			};
 			name = Release;
 		};

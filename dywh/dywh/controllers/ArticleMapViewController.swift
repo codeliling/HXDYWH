@@ -18,7 +18,7 @@ class ArticleMapViewController: UIViewController,MAMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         if mapView == nil{
-            MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a"
+            
             mapView = MAMapView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
             mapView.showsUserLocation = true
             mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
