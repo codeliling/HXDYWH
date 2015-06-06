@@ -38,6 +38,8 @@
 		DBB559751B21F3060069089E /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559741B21F3060069089E /* HomeTabBarController.swift */; };
 		DBB559771B229F970069089E /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559761B229F970069089E /* SettingTableViewController.swift */; };
 		DBB559791B22A8600069089E /* MusicCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559781B22A8600069089E /* MusicCellView.swift */; };
+		DBB5597B1B22E0380069089E /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5597A1B22E0380069089E /* MusicTableViewCell.swift */; };
+		DBB5597E1B22E1420069089E /* MusicCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBB5597D1B22E1420069089E /* MusicCellView.xib */; };
 		DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715B1AAE91A50010681A /* AppDelegate.swift */; };
 		DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715D1AAE91A50010681A /* ViewController.swift */; };
 		DBBE71611AAE91A50010681A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBE715F1AAE91A50010681A /* Main.storyboard */; };
@@ -178,6 +180,8 @@
 		DBB559741B21F3060069089E /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DBB559761B229F970069089E /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		DBB559781B22A8600069089E /* MusicCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCellView.swift; sourceTree = "<group>"; };
+		DBB5597A1B22E0380069089E /* MusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
+		DBB5597D1B22E1420069089E /* MusicCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicCellView.xib; sourceTree = "<group>"; };
 		DBBE71561AAE91A40010681A /* dywh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dywh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE715A1AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE715B1AAE91A50010681A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 		DB2E1F091AE09D670049876D /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				DBB5597A1B22E0380069089E /* MusicTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -340,6 +345,14 @@
 			path = RAMAnimationTabBar;
 			sourceTree = "<group>";
 		};
+		DBB5597C1B22E0FE0069089E /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				DBB5597D1B22E1420069089E /* MusicCellView.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		DBBE714D1AAE91A40010681A = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +377,7 @@
 		DBBE71581AAE91A40010681A /* dywh */ = {
 			isa = PBXGroup;
 			children = (
+				DBB5597C1B22E0FE0069089E /* xibs */,
 				DBB559621B21E92C0069089E /* models */,
 				DB2E1F091AE09D670049876D /* cells */,
 				DB2E1F061ADF53850049876D /* views */,
@@ -580,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB5597E1B22E1420069089E /* MusicCellView.xib in Resources */,
 				DBBE71611AAE91A50010681A /* Main.storyboard in Resources */,
 				DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */,
 				DB1BF9061B0D9104001DA2FC /* AMap.bundle in Resources */,
@@ -625,6 +640,7 @@
 				DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */,
 				DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */,
 				DBB559661B21E96D0069089E /* AudioStreamer.m in Sources */,
+				DBB5597B1B22E0380069089E /* MusicTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

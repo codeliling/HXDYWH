@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Haneke
 
-class MusicViewController: HXWHViewController {
+class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewDelegate {
     
      var mapViewController:MusicMapViewController?
     let cache = Shared.imageCache
@@ -33,6 +33,12 @@ class MusicViewController: HXWHViewController {
     var musicName:String?
     var musicAuthorName:String?
     var cdView:UIImageView!
+    var musicList:[MusicModel] = []
+    var currentMusicIndex:Int = 0
+    
+    var audioStream:AudioStreamer?
+    var cdViewAngle:CGFloat = 1.0
+    var cycleAnimationFlag:Bool = true
     
     @IBOutlet weak var musicProgressView: UIProgressView!
     
@@ -100,6 +106,9 @@ class MusicViewController: HXWHViewController {
         playLayer.contents = UIImage(named: "musicPlayIcon")?.CGImage
         playLayer.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 25, 75, 60, 60)
         musicView.layer.addSublayer(playLayer)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -129,7 +138,14 @@ class MusicViewController: HXWHViewController {
     }
     
     func cycleBtnClick(target:UIButton){
-    
+        
+        if let playing = audioStream?.isPlaying(){
+            audioStream?.pause()
+        }
+        else if let pause = audioStream?.isPaused(){
+            audioStream?.start()
+        }
+        
     }
     
     func shareBtnClick(target:UIButton){
@@ -137,11 +153,99 @@ class MusicViewController: HXWHViewController {
     }
     
     func preBtnClick(target:UIButton){
-    
+        currentMusicIndex--
+        if (currentMusicIndex >= 0){
+            cdViewAngle = 1.0
+            var musicModel:MusicModel = musicList[currentMusicIndex]
+            if let playing = audioStream?.isPlaying(){
+                audioStream?.stop()
+            }
+            else if let pause = audioStream?.isPaused(){
+                audioStream?.stop()
+            }
+            audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
+            audioStream?.start()
+        }
+        else{
+            //show Tips
+        }
     }
     
     func nextBtnClick(target:UIButton){
+        currentMusicIndex++
+        if (currentMusicIndex < musicList.count){
+            cdViewAngle = 1.0
+            var musicModel:MusicModel = musicList[currentMusicIndex]
+            if let playing = audioStream?.isPlaying(){
+                audioStream?.stop()
+            }
+            else if let pause = audioStream?.isPaused(){
+                audioStream?.stop()
+            }
+            audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
+            audioStream?.start()
+        }
+        else{
+            //show Tips
+        }
+    }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return musicList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var musicModel:MusicModel = musicList[indexPath.row]
+        var cell:MusicTableViewCell! = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MusicTableViewCell
+        
+        if cell == nil{
+            cell = MusicTableViewCell()
+        }
+        else{
+        
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        var cell:MusicTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! MusicTableViewCell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var musicModel:MusicModel = musicList[indexPath.row]
+        
+        audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
+        audioStream?.start()
+        currentMusicIndex = indexPath.row
+        self.CDCycleAnimation(cdView)
+    }
+    
+    func loadingMusicDataList(){
+        Alamofire.request(.GET, "", parameters: ["":""])
+            .responseJSON { (req, res, json, error) in
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                    println(req)
+                    println(res)
+                }
+                else {
+                    
+                }
+        }
+    }
+    
+    func CDCycleAnimation(cdView:UIView){
+        var endAngle:CGAffineTransform = CGAffineTransformMakeRotation(cdViewAngle * CGFloat(M_PI / 180.0));
+        
+        UIView.animateWithDuration(0.01, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            cdView.transform = endAngle
+        }) { (Bool) -> Void in
+            self.cdViewAngle += 10.0
+            if self.cycleAnimationFlag{
+                self.CDCycleAnimation(cdView)
+            }
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
