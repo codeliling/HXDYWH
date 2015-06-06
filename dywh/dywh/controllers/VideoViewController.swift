@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import Haneke
 
 class VideoViewController: HXWHViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,6 +18,8 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var mapBtn: UIButton!
     
     @IBOutlet weak var videoTableView: UITableView!
+    
+    let cache = Shared.imageCache
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(animated: Bool) {
+        /*
         if (mapViewController == nil){
             mapViewController = VideoMapViewController()
             mapViewController?.view.frame = CGRectMake(0, videoTableView.frame.origin.y,videoTableView.frame.size.width, videoTableView.frame.size.height)
@@ -39,7 +44,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-        }
+        }*/
         listBtn.selected = true
         mapBtn.selected = false
     }

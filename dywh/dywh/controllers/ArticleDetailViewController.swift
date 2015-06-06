@@ -8,11 +8,36 @@
 
 import UIKit
 
-class ArticleDetailViewController: HXWHViewController {
+class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate {
+    
+    @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.hidden = false
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        
+    }
+    
+    func webViewDidStartLoad(webView: UIWebView) {
+        
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        
     }
     
     override func didReceiveMemoryWarning() {

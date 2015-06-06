@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Haneke
 
 class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
@@ -20,6 +21,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     @IBOutlet weak var listBtn: UIButton!
     
     @IBOutlet weak var mapBtn: UIButton!
+    
+    let cache = Shared.imageCache
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        /*
         if (mapViewController == nil){
             mapViewController = ArticleMapViewController()
             mapViewController?.view.frame = CGRectMake(0, collectionView.frame.origin.y,collectionView.frame.size.width, collectionView.frame.size.height)
@@ -50,7 +54,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-        }
+        }*/
         listBtn.selected = true
         mapBtn.selected = false
     }
@@ -116,6 +120,15 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
+    }
+    
+    func loadImageByUrl(view:ArticleView, url:String){
+        let URL = NSURL(string: url)!
+        let fetcher = NetworkFetcher<UIImage>(URL: URL)
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            // Do something with image
+            view.imageLayer.contents = image.CGImage
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -66,6 +66,7 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
                 item.image = nil
                 item.title = ""
                 index++
+                tabBar.addSubview(container)
             }
         }
     }

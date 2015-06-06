@@ -9,5 +9,9 @@
 import Foundation
 
 class MusicModel: NSObject {
-    
+    var musicId:Int!
+    var musicName:String?
+    var musicAuthor:String?
+    var musicImageUrl:String?
+    var musicFileUrl:String?
 }

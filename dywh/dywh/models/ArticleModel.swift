@@ -9,5 +9,8 @@
 import Foundation
 
 class ArticleModel: NSObject {
-    
+    var articleId:Int!
+    var articleName:String?
+    var articleTag:String?
+    var articleImageUrl:String?
 }

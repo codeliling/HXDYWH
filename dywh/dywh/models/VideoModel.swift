@@ -9,5 +9,9 @@
 import Foundation
 
 class VideoModel: NSObject {
-    
+    var videoId:Int!
+    var videoName:String?
+    var videoCite:String?
+    var videoImageUrl:String?
+    var videoFileUrl:String?
 }
