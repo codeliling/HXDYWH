@@ -24,7 +24,8 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
-        
+        listBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
+        mapBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
 
         videoTableView.delegate = self
         videoTableView.dataSource = self

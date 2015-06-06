@@ -40,6 +40,8 @@ class MusicViewController: HXWHViewController {
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
+        listBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
+        mapBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
         
         musicView.layer.contents = UIImage(named: "videoBg2")?.CGImage
         

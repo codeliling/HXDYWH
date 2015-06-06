@@ -32,6 +32,10 @@
 		DBB559681B21E9C60069089E /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559671B21E9C60069089E /* ArticleModel.swift */; };
 		DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559691B21EB640069089E /* MusicModel.swift */; };
 		DBB5596C1B21EB880069089E /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5596B1B21EB880069089E /* VideoModel.swift */; };
+		DBB559711B21F1810069089E /* RAMAnimatedTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5596E1B21F1810069089E /* RAMAnimatedTabBarItem.swift */; };
+		DBB559721B21F1810069089E /* RAMBounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5596F1B21F1810069089E /* RAMBounceAnimation.swift */; };
+		DBB559731B21F1810069089E /* RAMItemAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559701B21F1810069089E /* RAMItemAnimationProtocol.swift */; };
+		DBB559751B21F3060069089E /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559741B21F3060069089E /* HomeTabBarController.swift */; };
 		DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715B1AAE91A50010681A /* AppDelegate.swift */; };
 		DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715D1AAE91A50010681A /* ViewController.swift */; };
 		DBBE71611AAE91A50010681A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBE715F1AAE91A50010681A /* Main.storyboard */; };
@@ -166,6 +170,10 @@
 		DBB559671B21E9C60069089E /* ArticleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		DBB559691B21EB640069089E /* MusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		DBB5596B1B21EB880069089E /* VideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		DBB5596E1B21F1810069089E /* RAMAnimatedTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMAnimatedTabBarItem.swift; sourceTree = "<group>"; };
+		DBB5596F1B21F1810069089E /* RAMBounceAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMBounceAnimation.swift; sourceTree = "<group>"; };
+		DBB559701B21F1810069089E /* RAMItemAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMItemAnimationProtocol.swift; sourceTree = "<group>"; };
+		DBB559741B21F3060069089E /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DBBE71561AAE91A40010681A /* dywh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dywh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE715A1AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE715B1AAE91A50010681A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +325,16 @@
 			path = AudioStream;
 			sourceTree = "<group>";
 		};
+		DBB5596D1B21F1810069089E /* RAMAnimationTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DBB5596E1B21F1810069089E /* RAMAnimatedTabBarItem.swift */,
+				DBB5596F1B21F1810069089E /* RAMBounceAnimation.swift */,
+				DBB559701B21F1810069089E /* RAMItemAnimationProtocol.swift */,
+			);
+			path = RAMAnimationTabBar;
+			sourceTree = "<group>";
+		};
 		DBBE714D1AAE91A40010681A = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +412,7 @@
 				DBFA4F921B0F1609007D8F9B /* MusicMapViewController.swift */,
 				DBFA4F941B0F1647007D8F9B /* ArticleDetailViewController.swift */,
 				DBFA4F981B0F2423007D8F9B /* HXWHViewController.swift */,
+				DBB559741B21F3060069089E /* HomeTabBarController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -401,6 +420,7 @@
 		DBBE717C1AAEC9F90010681A /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DBB5596D1B21F1810069089E /* RAMAnimationTabBar */,
 				DBB559631B21E96D0069089E /* AudioStream */,
 				DB1BF8FC1B0D9000001DA2FC /* BaiduStatistic */,
 				DB1BF8FF1B0D9000001DA2FC /* Toast */,
@@ -577,6 +597,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */,
+				DBB559721B21F1810069089E /* RAMBounceAnimation.swift in Sources */,
+				DBB559751B21F3060069089E /* HomeTabBarController.swift in Sources */,
+				DBB559711B21F1810069089E /* RAMAnimatedTabBarItem.swift in Sources */,
 				DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */,
 				DBB559611B21E8810069089E /* VideoMapViewController.swift in Sources */,
 				DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */,
@@ -588,6 +611,7 @@
 				DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */,
 				DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */,
 				DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */,
+				DBB559731B21F1810069089E /* RAMItemAnimationProtocol.swift in Sources */,
 				DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */,
 				DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */,
 				DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */,

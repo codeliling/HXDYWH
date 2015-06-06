@@ -33,10 +33,11 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
         mapBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         mapBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
-        
+        listBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
+        mapBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
         
         println(UIScreen.mainScreen().bounds.size.width)
-        imageWidth = (UIScreen.mainScreen().bounds.size.width - 20) / 2
+        imageWidth = (UIScreen.mainScreen().bounds.size.width - 16) / 2
         println("width is \(imageWidth)")
     }
 
@@ -73,14 +74,14 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
        
         //articleCell.frame.size = CGSizeMake(imageWidth, imageWidth)
         
-        var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth), imageName: "articleImage", titleName: "测试")
+        var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: "测试", tagName:"风景")
         
         for(var index = 0;index < articleCell.contentView.subviews.count; index++){
             let view = articleCell.contentView.subviews[index] as! UIView
             view.removeFromSuperview()
         }
         articleCell.contentView.addSubview(articleView)
-        articleCell.frame.size = CGSizeMake(imageWidth, imageWidth)
+        articleCell.frame.size = CGSizeMake(imageWidth, imageWidth - 30)
         return articleCell
     }
     
@@ -89,7 +90,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(imageWidth, imageWidth);
+        return CGSizeMake(imageWidth, imageWidth - 30);
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
