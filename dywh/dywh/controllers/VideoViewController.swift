@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Haneke
+import MediaPlayer
 
 class VideoViewController: HXWHViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,6 +21,10 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var videoTableView: UITableView!
     
     let cache = Shared.imageCache
+    
+    var mp:MPMoviePlayerViewController!
+    var player:MPMoviePlayerController!
+    var videoList:[VideoModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +55,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1000
+        return videoList.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -70,12 +75,21 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             cell?.addSubview(videoCellView)
             
         }
-        
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var videoModel:VideoModel = videoList[indexPath.row]
+        mp = MPMoviePlayerViewController(contentURL: NSURL(string: videoModel.videoFileUrl!))
+        mp.view.frame = self.view.bounds
+        self.view.addSubview(mp.view)
         
+        player = mp.moviePlayer
+        player.shouldAutoplay = true;
+        player.controlStyle = MPMovieControlStyle.Fullscreen;
+        player.scalingMode = MPMovieScalingMode.AspectFill;
+        player.play()
     }
     
     @IBAction func listBtnClick(sender: UIButton) {

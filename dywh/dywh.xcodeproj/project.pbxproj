@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DB1BF9021B0D9000001DA2FC /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1BF8FE1B0D9000001DA2FC /* libBaiduMobStat.a */; };
 		DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1BF9011B0D9000001DA2FC /* UIView+Toast.m */; };
-		DB1BF9061B0D9104001DA2FC /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB1BF9041B0D9104001DA2FC /* AMap.bundle */; };
 		DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2E1F071ADF542A0049876D /* ArticleView.swift */; };
 		DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */; };
 		DB2EB8EF1AC107CD0099934F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8EE1AC107CD0099934F /* UIKit.framework */; };
@@ -40,6 +39,8 @@
 		DBB559791B22A8600069089E /* MusicCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559781B22A8600069089E /* MusicCellView.swift */; };
 		DBB5597B1B22E0380069089E /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB5597A1B22E0380069089E /* MusicTableViewCell.swift */; };
 		DBB5597E1B22E1420069089E /* MusicCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBB5597D1B22E1420069089E /* MusicCellView.xib */; };
+		DBB559831B23F6630069089E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559821B23F6630069089E /* BaiduMapAPI.framework */; };
+		DBB559841B23F6750069089E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB5597F1B2328B90069089E /* MediaPlayer.framework */; };
 		DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715B1AAE91A50010681A /* AppDelegate.swift */; };
 		DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715D1AAE91A50010681A /* ViewController.swift */; };
 		DBBE71611AAE91A50010681A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBE715F1AAE91A50010681A /* Main.storyboard */; };
@@ -47,7 +48,6 @@
 		DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBE71641AAE91A50010681A /* LaunchScreen.xib */; };
 		DBBE71721AAE91A50010681A /* dywhTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71711AAE91A50010681A /* dywhTests.swift */; };
 		DBFA4F7E1B0DC111007D8F9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBFA4F801B0DC111007D8F9B /* InfoPlist.strings */; };
-		DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */; };
 		DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */; };
 		DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */; };
 		DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */; };
@@ -150,7 +150,6 @@
 		DB1BF8FE1B0D9000001DA2FC /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		DB1BF9001B0D9000001DA2FC /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		DB1BF9011B0D9000001DA2FC /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		DB1BF9041B0D9104001DA2FC /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = dywh/AMap.bundle; sourceTree = "<group>"; };
 		DB1BF9051B0D9104001DA2FC /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		DB2E1F071ADF542A0049876D /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		DB2EB8EA1AC0FF7B0099934F /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +181,8 @@
 		DBB559781B22A8600069089E /* MusicCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCellView.swift; sourceTree = "<group>"; };
 		DBB5597A1B22E0380069089E /* MusicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
 		DBB5597D1B22E1420069089E /* MusicCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicCellView.xib; sourceTree = "<group>"; };
+		DBB5597F1B2328B90069089E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		DBB559821B23F6630069089E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI.framework; path = dywh/BaiduMapAPI.framework; sourceTree = "<group>"; };
 		DBBE71561AAE91A40010681A /* dywh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dywh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE715A1AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE715B1AAE91A50010681A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		DBFA4F7D1B0DC103007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		DBFA4F7F1B0DC111007D8F9B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		DBFA4F811B0DC117007D8F9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = dywh/MAMapKit.framework; sourceTree = "<group>"; };
 		DBFA4F8A1B0EB338007D8F9B /* ArticleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMapViewController.swift; sourceTree = "<group>"; };
 		DBFA4F8C1B0F1530007D8F9B /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		DBFA4F901B0F15C5007D8F9B /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
@@ -210,10 +210,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB559841B23F6750069089E /* MediaPlayer.framework in Frameworks */,
 				DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */,
 				DB2EB9051AC108A10099934F /* Security.framework in Frameworks */,
 				DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */,
-				DBFA4F871B0DCEFE007D8F9B /* MAMapKit.framework in Frameworks */,
 				DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */,
 				DB2EB8FD1AC108650099934F /* SystemConfiguration.framework in Frameworks */,
 				DB2EB8FB1AC108400099934F /* CoreTelephony.framework in Frameworks */,
@@ -224,6 +224,7 @@
 				DB2EB8F31AC107E40099934F /* CoreGraphics.framework in Frameworks */,
 				DB2EB8F11AC107D80099934F /* Foundation.framework in Frameworks */,
 				DBB5595C1B21E5F60069089E /* Alamofire.framework in Frameworks */,
+				DBB559831B23F6630069089E /* BaiduMapAPI.framework in Frameworks */,
 				DB2EB8EF1AC107CD0099934F /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,12 +278,12 @@
 		DB2EB9061AC1090A0099934F /* framework */ = {
 			isa = PBXGroup;
 			children = (
-				DBFA4F861B0DCEFE007D8F9B /* MAMapKit.framework */,
+				DBB559821B23F6630069089E /* BaiduMapAPI.framework */,
 				DB2EB9041AC108A10099934F /* Security.framework */,
 				DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */,
-				DB1BF9041B0D9104001DA2FC /* AMap.bundle */,
 				DB2EB9001AC1087E0099934F /* libstdc++.dylib */,
 				DB2EB8FE1AC108720099934F /* libz.dylib */,
+				DBB5597F1B2328B90069089E /* MediaPlayer.framework */,
 				DB2EB8FC1AC108650099934F /* SystemConfiguration.framework */,
 				DB2EB8FA1AC108400099934F /* CoreTelephony.framework */,
 				DB2EB8F81AC108030099934F /* CoreLocation.framework */,
@@ -597,7 +598,6 @@
 				DBB5597E1B22E1420069089E /* MusicCellView.xib in Resources */,
 				DBBE71611AAE91A50010681A /* Main.storyboard in Resources */,
 				DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */,
-				DB1BF9061B0D9104001DA2FC /* AMap.bundle in Resources */,
 				DBBE71631AAE91A50010681A /* Images.xcassets in Resources */,
 				DBFA4F7E1B0DC111007D8F9B /* InfoPlist.strings in Resources */,
 			);

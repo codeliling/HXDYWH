@@ -313,9 +313,6 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="customSize" width="154" height="140"/>
-                                        <connections>
-                                            <segue destination="CTS-3L-bUP" kind="push" id="q1p-xz-xAW"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -384,6 +381,7 @@
                         <outlet property="collectionView" destination="GTg-DQ-tnW" id="ubu-Wm-Xpx"/>
                         <outlet property="listBtn" destination="IuY-aT-Zrt" id="1yI-sH-1l2"/>
                         <outlet property="mapBtn" destination="1ki-E0-Vn0" id="XZ6-qq-Re1"/>
+                        <segue destination="CTS-3L-bUP" kind="push" id="9k8-W9-1vQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQM-Xt-ZSN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,7 +391,7 @@
         <!--文章详情-->
         <scene sceneID="oQ0-es-GLF">
             <objects>
-                <viewController id="CTS-3L-bUP" customClass="ArticleDetailViewController" customModule="dywh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleDetail" id="CTS-3L-bUP" customClass="ArticleDetailViewController" customModule="dywh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gRk-Ce-GSo"/>
                         <viewControllerLayoutGuide type="bottom" id="eeY-6w-p64"/>

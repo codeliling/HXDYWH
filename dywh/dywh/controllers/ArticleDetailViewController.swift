@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate {
+class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestureRecognizerDelegate,UINavigationControllerDelegate{
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -16,6 +16,20 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        var rightButton:UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
+        rightButton.setImage(UIImage(named: "shareIconWhite"), forState: UIControlState.Normal)
+        rightButton.addTarget(self, action: "shareBtnClick", forControlEvents: UIControlEvents.TouchUpInside)
+       
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView:rightButton)
+        
+        self.navigationController?.interactivePopGestureRecognizer.enabled = true
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -26,6 +40,7 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.hidden = false
+        
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
@@ -38,6 +53,10 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView) {
         
+    }
+    
+    func shareBtnClick(){
+        println("share content click")
     }
     
     override func didReceiveMemoryWarning() {

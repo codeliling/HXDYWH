@@ -22,13 +22,24 @@ class ArticleMapViewController: UIViewController,MAMapViewDelegate {
             mapView = MAMapView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
             mapView.showsUserLocation = true
             mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
-            mapView.showsCompass = false
+            mapView.showsCompass = true
             mapView.showsScale = true
             mapView.scaleOrigin = CGPointMake(100, mapView.frame.size.height-20)
             mapView.delegate = self
             self.view.addSubview(mapView)
+            
+            var pointAnnotation:MAPointAnnotation = MAPointAnnotation()
+            pointAnnotation.coordinate = CLLocationCoordinate2DMake(39.989631, 116.481018)
+            pointAnnotation.title = "方恒国际"
+            pointAnnotation.subtitle = "阜通东大街6号"
+            mapView.addAnnotation(pointAnnotation)
+            
+            mapView.customizeUserLocationAccuracyCircleRepresentation = true
+            mapView.userTrackingMode  = MAUserTrackingModeFollowWithHeading
+            mapView.setZoomLevel(16.1, animated: true)
         }
     }
+     
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)

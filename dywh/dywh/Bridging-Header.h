@@ -9,7 +9,6 @@
 #ifndef dywh_Bridging_Header_h
 #define dywh_Bridging_Header_h
 
-#import <MAMapKit/MAMapKit.h>
 #import "libs/Toast/UIView+Toast.h"
 #import "libs/BaiduStatistic/BaiduMobStat.h"
 #import "libs/AudioStream/AudioStreamer.h"
