@@ -112,7 +112,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     override func viewDidAppear(animated: Bool) {
-        /*
+        
         if (mapViewController == nil){
             mapViewController = MusicMapViewController()
             mapViewController?.view.frame = CGRectMake(0, musicView.frame.origin.y,musicView.frame.size.width, musicView.frame.size.height + tableView.frame.size.height)
@@ -120,7 +120,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-        }*/
+        }
         listBtn.selected = true
         mapBtn.selected = false
     }

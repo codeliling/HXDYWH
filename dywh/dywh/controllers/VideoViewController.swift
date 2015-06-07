@@ -41,7 +41,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(animated: Bool) {
-        /*
+        
         if (mapViewController == nil){
             mapViewController = VideoMapViewController()
             mapViewController?.view.frame = CGRectMake(0, videoTableView.frame.origin.y,videoTableView.frame.size.width, videoTableView.frame.size.height)
@@ -49,7 +49,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-        }*/
+        }
         listBtn.selected = true
         mapBtn.selected = false
     }

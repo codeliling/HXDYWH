@@ -50,7 +50,6 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         if (mapViewController == nil){
             mapViewController = ArticleMapViewController()
             mapViewController?.view.frame = CGRectMake(0, collectionView.frame.origin.y,collectionView.frame.size.width, collectionView.frame.size.height)
-            mapViewController!.view.backgroundColor = UIColor.redColor()
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true

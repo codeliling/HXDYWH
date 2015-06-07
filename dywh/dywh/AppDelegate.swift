@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var mapManager: BMKMapManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statTracker.enableDebugOn = true
         statTracker.startWithAppId("a358344ffc")
         
-        MAMapServices.sharedServices().apiKey = "bec03cfecbd28f824945ebd0243e316a"
+        mapManager = BMKMapManager()
+        mapManager?.start("ksRAoNWuCSloyKb3ImbOqbgk", generalDelegate: nil)
         
         return true
     }

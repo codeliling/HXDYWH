@@ -8,48 +8,34 @@
 
 import UIKit
 
-class ArticleMapViewController: UIViewController,MAMapViewDelegate {
+class ArticleMapViewController: UIViewController,BMKMapViewDelegate {
     
-    var mapView:MAMapView!
+    var mapView:BMKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView = BMKMapView()
+        mapView.frame = self.view.frame
+        mapView.mapType = UInt(BMKMapTypeStandard)
+        mapView.zoomLevel = 5
+        mapView.showMapScaleBar = true
+        mapView.mapScaleBarPosition = CGPointMake(10, 10)
+        mapView.showsUserLocation = true
+        
+        mapView.compassPosition = CGPointMake(self.view.frame.width - 50, 10)
+        mapView.setCenterCoordinate(CLLocationCoordinate2DMake(26.2038,109.8151), animated: true)
+        self.view.addSubview(mapView)
     }
     
     override func viewWillAppear(animated: Bool) {
-        if mapView == nil{
-            
-            mapView = MAMapView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)))
-            mapView.showsUserLocation = true
-            mapView.setUserTrackingMode(MAUserTrackingModeFollow, animated: true)
-            mapView.showsCompass = true
-            mapView.showsScale = true
-            mapView.scaleOrigin = CGPointMake(100, mapView.frame.size.height-20)
-            mapView.delegate = self
-            self.view.addSubview(mapView)
-            
-            var pointAnnotation:MAPointAnnotation = MAPointAnnotation()
-            pointAnnotation.coordinate = CLLocationCoordinate2DMake(39.989631, 116.481018)
-            pointAnnotation.title = "方恒国际"
-            pointAnnotation.subtitle = "阜通东大街6号"
-            mapView.addAnnotation(pointAnnotation)
-            
-            mapView.customizeUserLocationAccuracyCircleRepresentation = true
-            mapView.userTrackingMode  = MAUserTrackingModeFollowWithHeading
-            mapView.setZoomLevel(16.1, animated: true)
-        }
+        super.viewWillAppear(animated)
+        mapView.delegate = self
     }
      
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        mapView.showsUserLocation = false
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
         mapView.delegate = nil
-        mapView.removeFromSuperview()
-        mapView = nil
-        println("remove article map...")
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,21 +8,27 @@
 
 import UIKit
 
-class VideoMapViewController: HXWHViewController {
+class VideoMapViewController: HXWHViewController,BMKMapViewDelegate {
     
-    var mapViewController:MusicMapViewController?
+    var mapView:BMKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        mapView = BMKMapView()
+        mapView.frame = self.view.frame
+        mapView.mapType = UInt(BMKMapTypeStandard)
+        mapView.zoomLevel = 5
+        mapView.showMapScaleBar = true
+        mapView.setCenterCoordinate(CLLocationCoordinate2DMake(109.815162,26.203805), animated: true)
+        self.view.addSubview(mapView)
     }
 
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         println("music view did disappear")
-        mapViewController?.view.removeFromSuperview()
-        mapViewController = nil
+        
     }
     
     override func didReceiveMemoryWarning() {
