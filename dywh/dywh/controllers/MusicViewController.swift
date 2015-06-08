@@ -52,7 +52,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         listBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
         mapBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
         
-        musicView.layer.contents = UIImage(named: "videoBg2")?.CGImage
+        musicView.layer.contents = UIImage(named: "musicPanelBg")?.CGImage
         
         cyclePlayBtn = UIButton()
         cyclePlayBtn.setBackgroundImage(UIImage(named: "musicCyclePlay"), forState: UIControlState.Normal)
@@ -68,7 +68,6 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         
         musicNameLayer=CATextLayer()
         musicNameLayer.foregroundColor = UIColor.whiteColor().CGColor
-        musicNameLayer.string = "Hello World!"
         musicNameLayer.frame = CGRectMake(75, 10, UIScreen.mainScreen().bounds.size.width - 150, 20)
         musicNameLayer.fontSize = 16.0
         musicNameLayer.contentsScale = 2.0
@@ -77,7 +76,6 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         
         authorNameLayer = CATextLayer()
         authorNameLayer.foregroundColor = UIColor.whiteColor().CGColor
-        authorNameLayer.string = "MATI"
         authorNameLayer.frame = CGRectMake(75, 30, UIScreen.mainScreen().bounds.size.width - 150, 20)
         authorNameLayer.fontSize = 14.0
         authorNameLayer.contentsScale = 2.0
@@ -95,17 +93,19 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         musicView.addSubview(nextPlayBtn)
         
         cdView = UIImageView(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 45, 55, 100, 100))
-        cdView.image = UIImage(named: "articleImage")!
+        cdView.image = UIImage(named: "musicCDCover")!
         cdView.layer.cornerRadius =  cdView.frame.size.width / 2
         cdView.clipsToBounds = true
         cdView.layer.borderWidth = 5.0
         cdView.layer.borderColor = UIColor.blackColor().CGColor
+        cdView.userInteractionEnabled = true
         musicView.addSubview(cdView)
         
-        var playLayer:CALayer = CALayer()
-        playLayer.contents = UIImage(named: "musicPlayIcon")?.CGImage
+        var playLayer:UIButton = UIButton()
+        playLayer.setBackgroundImage(UIImage(named: "musicPlayIcon"), forState: UIControlState.Normal)
         playLayer.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 25, 75, 60, 60)
-        musicView.layer.addSublayer(playLayer)
+        playLayer.addTarget(self, action: "playBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        musicView.addSubview(playLayer)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -142,18 +142,34 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func cycleBtnClick(target:UIButton){
+        println("cycleBtnClick")
         
-        if let playing = audioStream?.isPlaying(){
-            audioStream?.pause()
-        }
-        else if let pause = audioStream?.isPaused(){
-            audioStream?.start()
-        }
         
     }
     
     func shareBtnClick(target:UIButton){
     
+    }
+    
+    func playBtnClick(target:UIButton){
+        
+        if audioStream != nil{
+            println(audioStream!.isPlaying())
+            println(audioStream!.isPaused())
+            if audioStream!.isPlaying(){
+                audioStream?.pause()
+                cycleAnimationFlag = false
+                target.setBackgroundImage(UIImage(named: "musicPauseIcon"), forState: UIControlState.Normal)
+            }
+            else if audioStream!.isPaused(){
+                audioStream?.start()
+                cycleAnimationFlag = true
+                target.setBackgroundImage(UIImage(named: "musicPlayIcon"), forState: UIControlState.Normal)
+                self.CDCycleAnimation(cdView)
+            }
+        }
+        
+        
     }
     
     func preBtnClick(target:UIButton){
@@ -201,18 +217,15 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var musicModel:MusicModel = musicList[indexPath.row]
         var cell:MusicTableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? MusicTableViewCell
-        
-        if cell == nil{
-            cell = MusicTableViewCell()
-            
-            cell?.musicContentView = MusicCellView(frame: CGRectMake(15, 0, cell!.frame.width - 60, cell!.frame.height), musicName: musicModel.musicName!, musicAuthor: musicModel.musicAuthor!)
-            
+       
+        for view in cell!.contentView.subviews {
+            if let v = view as? MusicCellView{
+                cell?.musicContentView.musicAuthor = musicModel.musicAuthor!
+                cell?.musicContentView.musicName = musicModel.musicName!
+                cell?.setNeedsDisplay()
+            }
         }
-        else{
-            cell?.musicContentView.musicAhthorTextLayer.string = musicModel.musicAuthor!
-            cell?.musicContentView.musicNameTextLayer.string = musicModel.musicName!
-        }
-        
+        cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
     }
     
@@ -226,14 +239,23 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         cell?.musicContentView.boardIconLayer.opacity = 1.0
         
         var musicModel:MusicModel = musicList[indexPath.row]
-        audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
-        audioStream?.start()
-        currentMusicIndex = indexPath.row
-        self.CDCycleAnimation(cdView)
+        musicNameLayer.string = musicModel.musicName
+        authorNameLayer.string = musicModel.musicAuthor
+        if (musicModel.musicFileUrl != nil){
+            audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
+            audioStream?.start()
+            currentMusicIndex = indexPath.row
+            self.CDCycleAnimation(cdView)
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60.0
     }
     
     func loadingMusicDataList(){
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2"])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -253,8 +275,12 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                             musicModel = MusicModel()
                             musicModel?.musicName = tempDict.objectForKey("title") as? String
                             musicModel?.musicAuthor = tempDict.objectForKey("author") as? String
-                            var assetDict:NSDictionary? = tempDict.objectForKey("assets") as? NSDictionary
-                            musicModel?.musicFileUrl = assetDict?.objectForKey("media_file") as? String
+                            var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
+                            if (assetArray?.count > 0){
+                                var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
+                                musicModel?.musicFileUrl = assetDict.objectForKey("media_file") as? String
+                            }
+                            
                             musicModel?.musicId = tempDict.objectForKey("id") as! Int
                             musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
                             self.musicList.append(musicModel!)
@@ -271,7 +297,12 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         UIView.animateWithDuration(0.01, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             cdView.transform = endAngle
         }) { (Bool) -> Void in
-            self.cdViewAngle += 10.0
+            self.cdViewAngle += 2.0
+            
+            if (self.audioStream != nil && self.audioStream!.isFinishing()){
+                self.cycleAnimationFlag = false
+            }
+            
             if self.cycleAnimationFlag{
                 self.CDCycleAnimation(cdView)
             }

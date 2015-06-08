@@ -115,8 +115,9 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var articleModel:ArticleModel = articleList[indexPath.row]
         var detailViewController:ArticleDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ArticleDetail") as! ArticleDetailViewController
-        
+        detailViewController.articleId = articleModel.articleId
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     

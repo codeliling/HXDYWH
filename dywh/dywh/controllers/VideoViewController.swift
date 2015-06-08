@@ -38,6 +38,11 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
 
         videoTableView.delegate = self
         videoTableView.dataSource = self
+        
+        self.loadingVideoDataList()
+        
+        listBtn.selected = true
+        mapBtn.selected = false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -50,8 +55,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
         }
-        listBtn.selected = true
-        mapBtn.selected = false
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,14 +96,18 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var videoModel:VideoModel = videoList[indexPath.row]
         mp = MPMoviePlayerViewController(contentURL: NSURL(string: videoModel.videoFileUrl!))
-        mp.view.frame = self.view.bounds
-        self.view.addSubview(mp.view)
+        mp.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.height, UIScreen.mainScreen().bounds.size.width);
+        mp.view.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2, UIScreen.mainScreen().bounds.size.height/2);
+        mp.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 2))
+        
         
         player = mp.moviePlayer
         player.shouldAutoplay = true;
         player.controlStyle = MPMovieControlStyle.Fullscreen;
         player.scalingMode = MPMovieScalingMode.AspectFill;
         player.play()
+        
+        self.presentMoviePlayerViewControllerAnimated(mp)
     }
     
     @IBAction func listBtnClick(sender: UIButton) {
@@ -124,7 +132,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     func loadingVideoDataList(){
-        Alamofire.request(.GET, "", parameters: ["":""])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -132,7 +140,31 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                     println(res)
                 }
                 else {
-                    
+                    println(json)
+                    var resultDict:NSDictionary? = json as? NSDictionary
+                    var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
+                    var success:Int = dataDict?.objectForKey("success") as! Int
+                    var count:Int = dataDict?.objectForKey("count") as! Int
+                    if success == 1 && count > 0{
+                        var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
+                        var videoModel:VideoModel?
+                        for tempDict in articles{
+                            videoModel = VideoModel()
+                            videoModel?.videoName = tempDict.objectForKey("title") as? String
+                            var locationDict:NSDictionary = tempDict.objectForKey("location") as! NSDictionary
+                            videoModel?.videoCite = locationDict.objectForKey("city") as? String
+                            var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
+                            if (assetArray?.count > 0){
+                                var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
+                                videoModel?.videoFileUrl = assetDict.objectForKey("media_file") as? String
+                            }
+                            
+                            videoModel?.videoId = tempDict.objectForKey("id") as! Int
+                            videoModel?.videoImageUrl = tempDict.objectForKey("profile") as? String
+                            self.videoList.append(videoModel!)
+                        }
+                        self.videoTableView.reloadData()
+                    }
                 }
         }
     }

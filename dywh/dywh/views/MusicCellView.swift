@@ -10,9 +10,9 @@ import Foundation
 
 class MusicCellView: UIView {
     
-    var boardIconLayer:CALayer!
-    var musicNameTextLayer:CATextLayer!
-    var musicAhthorTextLayer:CATextLayer!
+    var boardIconLayer:CALayer = CALayer()
+    var musicNameTextLayer:CATextLayer = CATextLayer()
+    var musicAhthorTextLayer:CATextLayer = CATextLayer()
     var musicName:String?
     var musicAuthor:String?
     
@@ -21,13 +21,10 @@ class MusicCellView: UIView {
         self.musicName = musicName
         self.musicAuthor = musicAuthor
         
-        boardIconLayer = CALayer()
-        musicNameTextLayer = CATextLayer()
-        musicAhthorTextLayer = CATextLayer()
     }
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func drawRect(rect: CGRect) {
@@ -36,7 +33,7 @@ class MusicCellView: UIView {
         
         musicNameTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         musicNameTextLayer.string = musicName
-        musicNameTextLayer.frame = CGRectMake(0, self.frame.origin.y + 5, self.frame.size.width, 20)
+        musicNameTextLayer.frame = CGRectMake(40, self.frame.origin.y + 5, self.frame.size.width, 20)
         musicNameTextLayer.fontSize = 20.0
         musicNameTextLayer.contentsScale = 2.0
         musicNameTextLayer.alignmentMode = kCAAlignmentJustified
@@ -45,7 +42,7 @@ class MusicCellView: UIView {
 
         musicAhthorTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         musicAhthorTextLayer.string = musicAuthor
-        musicAhthorTextLayer.frame = CGRectMake(0, self.frame.origin.y + 25, self.frame.size.width, 20)
+        musicAhthorTextLayer.frame = CGRectMake(40, self.frame.origin.y + 25, self.frame.size.width, 20)
         musicAhthorTextLayer.fontSize = 16.0
         musicAhthorTextLayer.contentsScale = 2.0
         musicAhthorTextLayer.alignmentMode = kCAAlignmentJustified

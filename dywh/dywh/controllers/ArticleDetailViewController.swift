@@ -12,6 +12,8 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     @IBOutlet weak var webView: UIWebView!
     
+    var articleId:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +31,7 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        webView.loadRequest(NSURLRequest(URL:NSURL(string: ServerUrl.ServerArticleDetailURL + String(articleId))!))
     }
     
     override func viewWillAppear(animated: Bool) {

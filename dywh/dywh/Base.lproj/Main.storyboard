@@ -86,11 +86,87 @@
                                     <action selector="mapBtnClick:" destination="Zae-A2-K3q" eventType="touchUpInside" id="zuZ-de-085"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zTv-Sy-X8f">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zTv-Sy-X8f">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.78727949239999995" green="0.78039215689999997" blue="0.76723426220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="xEE-XY-srE" customClass="MusicTableViewCell" customModule="dywh" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xEE-XY-srE" id="fVC-jd-rIl">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lum-uI-gqQ" customClass="MusicCellView" customModule="dywh" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="shareIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="0iJ-WV-3b0">
+                                                    <rect key="frame" x="316" y="13" width="33" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="0K9-1l-hsI"/>
+                                                        <constraint firstAttribute="width" constant="30" id="UVO-fQ-SMg"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="0K9-1l-hsI"/>
+                                                            <exclude reference="UVO-fQ-SMg"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="0K9-1l-hsI"/>
+                                                            <include reference="UVO-fQ-SMg"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="lum-uI-gqQ" firstAttribute="top" secondItem="fVC-jd-rIl" secondAttribute="topMargin" constant="-8" id="5Wc-v3-2hz"/>
+                                                <constraint firstItem="0iJ-WV-3b0" firstAttribute="leading" secondItem="lum-uI-gqQ" secondAttribute="trailing" constant="12" id="HQh-0p-QFa"/>
+                                                <constraint firstItem="0iJ-WV-3b0" firstAttribute="top" secondItem="fVC-jd-rIl" secondAttribute="topMargin" constant="7" id="Sy4-Nc-PwW"/>
+                                                <constraint firstItem="lum-uI-gqQ" firstAttribute="leading" secondItem="fVC-jd-rIl" secondAttribute="leadingMargin" constant="3" id="UAO-QI-7Tf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0iJ-WV-3b0" secondAttribute="trailing" constant="8" id="a9F-Rr-e4o"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lum-uI-gqQ" secondAttribute="bottom" constant="-9" id="p9E-R0-Rnw"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="lum-uI-gqQ"/>
+                                                    <exclude reference="0iJ-WV-3b0"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="5Wc-v3-2hz"/>
+                                                    <exclude reference="UAO-QI-7Tf"/>
+                                                    <exclude reference="p9E-R0-Rnw"/>
+                                                    <exclude reference="HQh-0p-QFa"/>
+                                                    <exclude reference="Sy4-Nc-PwW"/>
+                                                    <exclude reference="a9F-Rr-e4o"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="lum-uI-gqQ"/>
+                                                    <include reference="0iJ-WV-3b0"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="5Wc-v3-2hz"/>
+                                                    <include reference="UAO-QI-7Tf"/>
+                                                    <include reference="p9E-R0-Rnw"/>
+                                                    <include reference="HQh-0p-QFa"/>
+                                                    <include reference="Sy4-Nc-PwW"/>
+                                                    <include reference="a9F-Rr-e4o"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="musicContentView" destination="lum-uI-gqQ" id="iiL-tr-lcJ"/>
+                                            <outlet property="shareBtn" destination="0iJ-WV-3b0" id="FYH-3z-mtq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUw-lr-kB2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -833,6 +909,7 @@
         <image name="modeLocationNormal" width="16" height="16"/>
         <image name="musicNormal" width="25" height="25"/>
         <image name="settingNormal" width="25" height="25"/>
+        <image name="shareIconWhite" width="33" height="33"/>
         <image name="videoNormal" width="25" height="25"/>
     </resources>
 </document>
