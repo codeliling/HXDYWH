@@ -13,4 +13,9 @@ class ArticleModel: NSObject {
     var articleName:String?
     var articleTag:String?
     var articleImageUrl:String?
+    
+    var latitude:CGFloat!
+    var longitude:CGFloat!
+    
+    var articleDescription:String?
 }

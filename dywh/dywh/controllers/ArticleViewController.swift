@@ -46,6 +46,9 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         println("width is \(imageWidth)")
         
         loadingArticleDataList()
+        
+        listBtn.selected = true
+        mapBtn.selected = false
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -58,8 +61,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
         }
-        listBtn.selected = true
-        mapBtn.selected = false
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -183,8 +185,13 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
                             articleModel?.articleTag = categoryDict?.objectForKey("name") as? String
                             articleModel?.articleImageUrl = tempDict.objectForKey("profile") as? String
                             articleModel?.articleId = tempDict.objectForKey("id") as! Int
+                            articleModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                            articleModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                            articleModel?.articleDescription = tempDict.objectForKey("description") as? String
                             self.articleList.append(articleModel!)
+                            self.mapViewController?.addMapPoint(articleModel!)
                         }
+                        //self.mapViewController?.articleList = self.articleList
                         self.collectionView.reloadData()
                     }
                 }

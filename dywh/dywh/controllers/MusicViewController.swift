@@ -113,6 +113,9 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         tableView.tableFooterView = UIView(frame: CGRectZero);
         
         self.loadingMusicDataList()
+        
+        listBtn.selected = true
+        mapBtn.selected = false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -125,8 +128,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
         }
-        listBtn.selected = true
-        mapBtn.selected = false
+        
     }
     
     @IBAction func listBtnClick(sender: UIButton) {
