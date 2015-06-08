@@ -12,7 +12,7 @@ import Haneke
 
 class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewDelegate {
     
-     var mapViewController:MusicMapViewController?
+    var mapViewController:MusicMapViewController?
     let cache = Shared.imageCache
     
     @IBOutlet weak var listBtn: UIButton!
@@ -109,6 +109,10 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.tableFooterView = UIView(frame: CGRectZero);
+        
+        self.loadingMusicDataList()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -196,25 +200,32 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var musicModel:MusicModel = musicList[indexPath.row]
-        var cell:MusicTableViewCell! = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MusicTableViewCell
+        var cell:MusicTableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? MusicTableViewCell
         
         if cell == nil{
             cell = MusicTableViewCell()
+            
+            cell?.musicContentView = MusicCellView(frame: CGRectMake(15, 0, cell!.frame.width - 60, cell!.frame.height), musicName: musicModel.musicName!, musicAuthor: musicModel.musicAuthor!)
+            
         }
         else{
-        
+            cell?.musicContentView.musicAhthorTextLayer.string = musicModel.musicAuthor!
+            cell?.musicContentView.musicNameTextLayer.string = musicModel.musicName!
         }
         
-        return cell
+        return cell!
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         var cell:MusicTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! MusicTableViewCell
+        cell.musicContentView.boardIconLayer.opacity = 0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var musicModel:MusicModel = musicList[indexPath.row]
+        var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(indexPath) as? MusicTableViewCell
+        cell?.musicContentView.boardIconLayer.opacity = 1.0
         
+        var musicModel:MusicModel = musicList[indexPath.row]
         audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
         audioStream?.start()
         currentMusicIndex = indexPath.row
@@ -222,7 +233,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func loadingMusicDataList(){
-        Alamofire.request(.GET, "", parameters: ["":""])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -230,7 +241,26 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                     println(res)
                 }
                 else {
-                    
+                    println(json)
+                    var resultDict:NSDictionary? = json as? NSDictionary
+                    var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
+                    var success:Int = dataDict?.objectForKey("success") as! Int
+                    var count:Int = dataDict?.objectForKey("count") as! Int
+                    if success == 1 && count > 0{
+                        var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
+                        var musicModel:MusicModel?
+                        for tempDict in articles{
+                            musicModel = MusicModel()
+                            musicModel?.musicName = tempDict.objectForKey("title") as? String
+                            musicModel?.musicAuthor = tempDict.objectForKey("author") as? String
+                            var assetDict:NSDictionary? = tempDict.objectForKey("assets") as? NSDictionary
+                            musicModel?.musicFileUrl = assetDict?.objectForKey("media_file") as? String
+                            musicModel?.musicId = tempDict.objectForKey("id") as! Int
+                            musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
+                            self.musicList.append(musicModel!)
+                        }
+                        self.tableView.reloadData()
+                    }
                 }
         }
     }

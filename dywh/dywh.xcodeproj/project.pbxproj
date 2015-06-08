@@ -42,6 +42,7 @@
 		DBB559831B23F6630069089E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559821B23F6630069089E /* BaiduMapAPI.framework */; };
 		DBB559841B23F6750069089E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB5597F1B2328B90069089E /* MediaPlayer.framework */; };
 		DBB559861B23FAAA0069089E /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBB559851B23FAAA0069089E /* mapapi.bundle */; };
+		DBB559891B251EE70069089E /* ServerUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB559881B251EE70069089E /* ServerUrl.swift */; };
 		DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715B1AAE91A50010681A /* AppDelegate.swift */; };
 		DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE715D1AAE91A50010681A /* ViewController.swift */; };
 		DBBE71611AAE91A50010681A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBBE715F1AAE91A50010681A /* Main.storyboard */; };
@@ -185,6 +186,7 @@
 		DBB5597F1B2328B90069089E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		DBB559821B23F6630069089E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI.framework; path = dywh/BaiduMapAPI.framework; sourceTree = "<group>"; };
 		DBB559851B23FAAA0069089E /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = dywh/mapapi.bundle; sourceTree = "<group>"; };
+		DBB559881B251EE70069089E /* ServerUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerUrl.swift; sourceTree = "<group>"; };
 		DBBE71561AAE91A40010681A /* dywh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dywh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE715A1AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE715B1AAE91A50010681A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -356,6 +358,14 @@
 			path = xibs;
 			sourceTree = "<group>";
 		};
+		DBB559871B251ECF0069089E /* commons */ = {
+			isa = PBXGroup;
+			children = (
+				DBB559881B251EE70069089E /* ServerUrl.swift */,
+			);
+			path = commons;
+			sourceTree = "<group>";
+		};
 		DBBE714D1AAE91A40010681A = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +391,7 @@
 		DBBE71581AAE91A40010681A /* dywh */ = {
 			isa = PBXGroup;
 			children = (
+				DBB559871B251ECF0069089E /* commons */,
 				DBB5597C1B22E0FE0069089E /* xibs */,
 				DBB559621B21E92C0069089E /* models */,
 				DB2E1F091AE09D670049876D /* cells */,
@@ -628,6 +639,7 @@
 				DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */,
 				DBB559611B21E8810069089E /* VideoMapViewController.swift in Sources */,
 				DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */,
+				DBB559891B251EE70069089E /* ServerUrl.swift in Sources */,
 				DBB559681B21E9C60069089E /* ArticleModel.swift in Sources */,
 				DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */,
 				DBFA4F971B0F18DE007D8F9B /* VideoCellView.swift in Sources */,

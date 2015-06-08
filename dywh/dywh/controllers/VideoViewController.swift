@@ -64,6 +64,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let identifier:String = "Cell"
+        var videoModel:VideoModel = videoList[indexPath.row]
         var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
         
         if cell == nil{
@@ -71,9 +72,18 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                 reuseIdentifier: identifier)
             cell?.frame = CGRectMake(0, 0, tableView.frame.size.width, 200)
             cell?.backgroundColor = UIColor.blackColor()
-            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), bgImage: UIImage(named: "videoBg1")!, titleText: "新通道夏令营总宣传片", locationText: "通道 平坦乡", videoTimeLongText: "00:10:20")
+            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), bgImage: UIImage(named: "videoBg1")!, titleText: videoModel.videoName!, locationText: videoModel.videoCite!, videoTimeLongText: "")
             cell?.addSubview(videoCellView)
-            
+            self.loadImageByUrl(videoCellView, url: videoModel.videoImageUrl!)
+        }
+        else{
+            for view in cell!.subviews {
+                if let v = view as? VideoCellView{
+                    self.loadImageByUrl(v, url: videoModel.videoImageUrl!)
+                    v.titleLayer.string = videoModel.videoName!
+                    v.locationTextLayer.string = videoModel.videoCite
+                }
+            }
         }
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!
@@ -102,6 +112,29 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         mapViewController!.view.hidden = false
         sender.selected = true
         listBtn.selected = false
+    }
+    
+    func loadImageByUrl(view:VideoCellView, url:String){
+        let URL = NSURL(string: url)!
+        let fetcher = NetworkFetcher<UIImage>(URL: URL)
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            // Do something with image
+            view.imageLayer.contents = image.CGImage
+        }
+    }
+    
+    func loadingVideoDataList(){
+        Alamofire.request(.GET, "", parameters: ["":""])
+            .responseJSON { (req, res, json, error) in
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                    println(req)
+                    println(res)
+                }
+                else {
+                    
+                }
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

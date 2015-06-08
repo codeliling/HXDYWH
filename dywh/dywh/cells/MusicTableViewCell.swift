@@ -10,4 +10,6 @@ import UIKit
 
 class MusicTableViewCell : UITableViewCell{
     
+    @IBOutlet weak var musicContentView: MusicCellView!
+    @IBOutlet weak var shareBtn: UIImageView!
 }

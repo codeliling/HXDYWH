@@ -14,14 +14,21 @@ class VideoCellView: UIView {
     var titleText:String?
     var locationText:String?
     var videoTimeLongText:String?
+    var imageLayer:CALayer!
+    var titleLayer:CATextLayer!
+    var timeTextLayer:CATextLayer!
+    var locationTextLayer:CATextLayer
     
     init(frame: CGRect, bgImage:UIImage, titleText:String, locationText:String, videoTimeLongText:String) {
         self.bgImage = bgImage
         self.titleText = titleText
         self.locationText = locationText
         self.videoTimeLongText = videoTimeLongText
+        imageLayer = CALayer()
+        titleLayer = CATextLayer()
+        timeTextLayer = CATextLayer()
+        locationTextLayer = CATextLayer()
         super.init(frame:frame)
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -32,12 +39,10 @@ class VideoCellView: UIView {
         var imageCG = bgImage?.CGImage
         //image?.drawAtPoint(CGPointZero)
         
-        var imageLayer:CALayer = CALayer()
         imageLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 45)
         imageLayer.contents = imageCG
         self.layer.addSublayer(imageLayer)
         
-        var titleLayer:CATextLayer = CATextLayer()
         titleLayer.foregroundColor = UIColor.whiteColor().CGColor
         titleLayer.string = titleText
         titleLayer.frame = CGRectMake(5, self.frame.size.height - 40, self.frame.size.width, 20)
@@ -66,7 +71,6 @@ class VideoCellView: UIView {
         shareIcon.contents = UIImage(named: "shareIconWhite")?.CGImage
         self.layer.addSublayer(shareIcon)
         
-        var timeTextLayer:CATextLayer = CATextLayer()
         timeTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         timeTextLayer.string = videoTimeLongText
         timeTextLayer.frame = CGRectMake(self.frame.size.width - 90, self.frame.size.height - 20, 50, 20)
@@ -75,7 +79,6 @@ class VideoCellView: UIView {
         timeTextLayer.alignmentMode = kCAAlignmentJustified
         self.layer.addSublayer(timeTextLayer)
         
-        var locationTextLayer:CATextLayer = CATextLayer()
         locationTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         locationTextLayer.string = videoTimeLongText
         locationTextLayer.frame = CGRectMake(23, self.frame.size.height - 20, 80, 20)

@@ -27,7 +27,7 @@ class ArticleView: UIView {
         imageLayer = CALayer()
         typeLayer = CATextLayer()
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -24,6 +24,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     let cache = Shared.imageCache
     
+    var articleList:[ArticleModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +44,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         println(UIScreen.mainScreen().bounds.size.width)
         imageWidth = (UIScreen.mainScreen().bounds.size.width - 16) / 2
         println("width is \(imageWidth)")
+        
+        loadingArticleDataList()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -68,24 +72,46 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1000
+        return articleList.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var articleModel:ArticleModel = articleList[indexPath.row]
         
-        var articleCell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell1", forIndexPath: indexPath) as! UICollectionViewCell
+        var articleCell:UICollectionViewCell? = collectionView.dequeueReusableCellWithReuseIdentifier("Cell1", forIndexPath: indexPath) as? UICollectionViewCell
        
-        //articleCell.frame.size = CGSizeMake(imageWidth, imageWidth)
-        
-        var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: "测试", tagName:"风景")
-        
+        if articleCell == nil{
+            articleCell = UICollectionViewCell(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30))
+            var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+            self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
+            articleCell?.contentView.addSubview(articleView)
+            
+        }
+        else{
+            var isAddArticleView:Bool = false
+            for view in articleCell!.subviews {
+                
+                if let v = view as? ArticleView{
+                    isAddArticleView = true
+                    self.loadImageByUrl(v, url: articleModel.articleImageUrl!)
+                    v.titleLayer.string = articleModel.articleName
+                    v.typeLayer.string = articleModel.articleTag
+                }
+            }
+            if !isAddArticleView{
+                var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+                articleCell?.contentView.addSubview(articleView)
+                self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
+            }
+        }
+    
+        /*
         for(var index = 0;index < articleCell.contentView.subviews.count; index++){
             let view = articleCell.contentView.subviews[index] as! UIView
             view.removeFromSuperview()
-        }
-        articleCell.contentView.addSubview(articleView)
-        articleCell.frame.size = CGSizeMake(imageWidth, imageWidth - 30)
-        return articleCell
+        }*/
+        
+        return articleCell!
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -129,6 +155,38 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         cache.fetch(fetcher: fetcher).onSuccess { image in
             // Do something with image
             view.imageLayer.contents = image.CGImage
+        }
+    }
+    
+    func loadingArticleDataList(){
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1"])
+            .responseJSON { (req, res, json, error) in
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                    println(req)
+                    println(res)
+                }
+                else {
+                    println(json)
+                    var resultDict:NSDictionary? = json as? NSDictionary
+                    var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
+                    var success:Int = dataDict?.objectForKey("success") as! Int
+                    var count:Int = dataDict?.objectForKey("count") as! Int
+                    if success == 1 && count > 0{
+                        var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
+                        var articleModel:ArticleModel?
+                        for tempDict in articles{
+                            articleModel = ArticleModel()
+                            articleModel?.articleName = tempDict.objectForKey("title") as? String
+                            var categoryDict:NSDictionary? = tempDict.objectForKey("category") as? NSDictionary
+                            articleModel?.articleTag = categoryDict?.objectForKey("name") as? String
+                            articleModel?.articleImageUrl = tempDict.objectForKey("profile") as? String
+                            articleModel?.articleId = tempDict.objectForKey("id") as! Int
+                            self.articleList.append(articleModel!)
+                        }
+                        self.collectionView.reloadData()
+                    }
+                }
         }
     }
     
