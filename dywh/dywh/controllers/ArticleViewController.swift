@@ -44,9 +44,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         println(UIScreen.mainScreen().bounds.size.width)
         imageWidth = (UIScreen.mainScreen().bounds.size.width - 16) / 2
         println("width is \(imageWidth)")
-        
-        loadingArticleDataList()
-        
+                
         listBtn.selected = true
         mapBtn.selected = false
     }
@@ -60,6 +58,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
+            loadingArticleDataList()
         }
         
     }

@@ -282,7 +282,9 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                                 var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
                                 musicModel?.musicFileUrl = assetDict.objectForKey("media_file") as? String
                             }
-                            
+                            musicModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                            musicModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                            musicModel?.musicDescription = tempDict.objectForKey("description") as? String
                             musicModel?.musicId = tempDict.objectForKey("id") as! Int
                             musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
                             self.musicList.append(musicModel!)

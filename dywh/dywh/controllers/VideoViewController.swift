@@ -39,8 +39,6 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         videoTableView.delegate = self
         videoTableView.dataSource = self
         
-        self.loadingVideoDataList()
-        
         listBtn.selected = true
         mapBtn.selected = false
     }
@@ -54,6 +52,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
+            self.loadingVideoDataList()
         }
         
     }
@@ -161,7 +160,11 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                             
                             videoModel?.videoId = tempDict.objectForKey("id") as! Int
                             videoModel?.videoImageUrl = tempDict.objectForKey("profile") as? String
+                            videoModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                            videoModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                            videoModel?.videoDescription = tempDict.objectForKey("description") as? String
                             self.videoList.append(videoModel!)
+                            self.mapViewController?.addMapPoint(videoModel!)
                         }
                         self.videoTableView.reloadData()
                     }

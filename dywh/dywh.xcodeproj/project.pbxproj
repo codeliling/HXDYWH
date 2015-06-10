@@ -22,6 +22,7 @@
 		DB2EB8FF1AC108720099934F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB8FE1AC108720099934F /* libz.dylib */; };
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
+		DB5BA5391B281B2600492A49 /* VideoBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */; };
 		DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; };
 		DBB559591B21E5F00069089E /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DBB5595C1B21E5F60069089E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559451B21E5C10069089E /* Alamofire.framework */; };
@@ -167,6 +168,7 @@
 		DB2EB9001AC1087E0099934F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoBubbleView.swift; sourceTree = "<group>"; };
 		DBB5593D1B21E5C10069089E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../../OpenSource/swift/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		DBB5594C1B21E5CA0069089E /* Haneke.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Haneke.xcodeproj; path = ../../../OpenSource/swift/HanekeSwift/Haneke.xcodeproj; sourceTree = "<group>"; };
 		DBB559601B21E8810069089E /* VideoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMapViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				DBFA4F961B0F18DE007D8F9B /* VideoCellView.swift */,
 				DBB559781B22A8600069089E /* MusicCellView.swift */,
 				DBB5598B1B2594890069089E /* MapArticlePanelView.swift */,
+				DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -299,6 +302,13 @@
 				DB2EB8EE1AC107CD0099934F /* UIKit.framework */,
 			);
 			name = framework;
+			sourceTree = "<group>";
+		};
+		DB5BA5301B2805B700492A49 /* maptools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = maptools;
 			sourceTree = "<group>";
 		};
 		DBB5593E1B21E5C10069089E /* Products */ = {
@@ -391,6 +401,7 @@
 		DBBE71581AAE91A40010681A /* dywh */ = {
 			isa = PBXGroup;
 			children = (
+				DB5BA5301B2805B700492A49 /* maptools */,
 				DBB559871B251ECF0069089E /* commons */,
 				DBB5597C1B22E0FE0069089E /* xibs */,
 				DBB559621B21E92C0069089E /* models */,
@@ -652,6 +663,7 @@
 				DBFA4F991B0F2424007D8F9B /* HXWHViewController.swift in Sources */,
 				DBB559791B22A8600069089E /* MusicCellView.swift in Sources */,
 				DBFA4F951B0F1647007D8F9B /* ArticleDetailViewController.swift in Sources */,
+				DB5BA5391B281B2600492A49 /* VideoBubbleView.swift in Sources */,
 				DBB559771B229F970069089E /* SettingTableViewController.swift in Sources */,
 				DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */,
 				DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */,

@@ -14,4 +14,9 @@ class MusicModel: NSObject {
     var musicAuthor:String?
     var musicImageUrl:String?
     var musicFileUrl:String?
+    
+    var latitude:CGFloat!
+    var longitude:CGFloat!
+    
+    var musicDescription:String?
 }

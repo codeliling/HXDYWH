@@ -45,8 +45,21 @@ class ArticleMapViewController: UIViewController,BMKMapViewDelegate {
     }
     
     func mapView(mapView: BMKMapView!, didSelectAnnotationView view: BMKAnnotationView!) {
-        var annotation:BMKPointAnnotation = view.annotation as! BMKPointAnnotation
-        println(annotation.title)
+        var title:String = view.annotation.title!()
+        
+        for aModle in articleList{
+            if title == aModle.articleName{
+                articleModel = aModle
+            }
+        }
+        
+        if (articleModel != nil){
+            mAPView.hidden = false
+            self.loadImageByUrl(mAPView, url: articleModel!.articleImageUrl!)
+            mAPView.title = articleModel!.articleName
+            mAPView.articleDescription = articleModel!.articleDescription
+            mAPView.setNeedsDisplay()
+        }
     }
     
     func addMapPoint(articleModel:ArticleModel){
@@ -64,28 +77,15 @@ class ArticleMapViewController: UIViewController,BMKMapViewDelegate {
             newAnnotationView.animatesDrop = true;// 设置该标注点动画显示
             newAnnotationView.annotation = annotation;
             newAnnotationView.image = UIImage(named: "locationIcon")
-            
+            newAnnotationView.frame = CGRectMake(newAnnotationView.frame.origin.x, newAnnotationView.frame.origin.y, 30, 30)
+            newAnnotationView.paopaoView = nil
             return newAnnotationView
         }
         return nil
     }
     
     func mapView(mapView: BMKMapView!, annotationViewForBubble view: BMKAnnotationView!) {
-        var title:String = view.annotation.title!()
         
-        for aModle in articleList{
-            if title == aModle.articleName{
-                articleModel = aModle
-            }
-        }
-        
-        if (articleModel != nil){
-            mAPView.hidden = false
-            self.loadImageByUrl(mAPView, url: articleModel!.articleImageUrl!)
-            mAPView.title = articleModel!.articleName
-            mAPView.articleDescription = articleModel!.articleDescription
-            mAPView.setNeedsDisplay()
-        }
     }
     
     func panelClick(gesture:UIGestureRecognizer){

@@ -14,4 +14,9 @@ class VideoModel: NSObject {
     var videoCite:String?
     var videoImageUrl:String?
     var videoFileUrl:String?
+    
+    var latitude:CGFloat!
+    var longitude:CGFloat!
+    
+    var videoDescription:String?
 }
