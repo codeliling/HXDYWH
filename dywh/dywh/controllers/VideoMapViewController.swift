@@ -81,15 +81,19 @@ class VideoMapViewController: HXWHViewController,BMKMapViewDelegate {
         
         if videoModel != nil{
             mp = MPMoviePlayerViewController(contentURL: NSURL(string:videoModel!.videoFileUrl!))
-            mp.view.frame = CGRectMake(0, UIScreen.mainScreen().bounds.size.height - 500, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.width)
-            mp.view.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2, UIScreen.mainScreen().bounds.size.height/2)
+            mp.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.height, UIScreen.mainScreen().bounds.size.width);
+            mp.view.center = CGPointMake(UIScreen.mainScreen().bounds.size.width/2, UIScreen.mainScreen().bounds.size.height/2);
+            mp.view.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 2))
+            
             
             player = mp.moviePlayer
             player.shouldAutoplay = true;
             player.controlStyle = MPMovieControlStyle.Fullscreen;
             player.scalingMode = MPMovieScalingMode.AspectFill;
+            
             player.play()
-            self.view.addSubview(mp.view)
+            
+            self.presentMoviePlayerViewControllerAnimated(mp)
         }
     }
     

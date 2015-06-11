@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xeb-YM-Ta0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="41W-W0-0Fb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHh-Ua-9KX">
@@ -99,11 +99,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xEE-XY-srE" id="fVC-jd-rIl">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lum-uI-gqQ" customClass="MusicCellView" customModule="dywh" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lum-uI-gqQ" customClass="MusicCellView" customModule="dywh" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="280" height="60"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="11" y="0.0" width="251" height="60"/>
+                                                    </variation>
                                                 </view>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="shareIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="0iJ-WV-3b0">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="shareIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="0iJ-WV-3b0">
                                                     <rect key="frame" x="316" y="13" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0K9-1l-hsI"/>
@@ -115,7 +118,8 @@
                                                             <exclude reference="UVO-fQ-SMg"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="274" y="15" width="30" height="30"/>
                                                         <mask key="constraints">
                                                             <include reference="0K9-1l-hsI"/>
                                                             <include reference="UVO-fQ-SMg"/>
@@ -316,7 +320,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DLa-80-fHw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tGY-n1-FKM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-aT-Zrt">
@@ -475,7 +479,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eeY-6w-p64"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eub-GR-9gK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cim-BO-3o1">
@@ -549,7 +553,7 @@
             <objects>
                 <tableViewController id="yqk-Wp-O1m" customClass="SettingTableViewController" customModule="dywh" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vzo-1U-w7J">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -776,7 +780,7 @@
                         <viewControllerLayoutGuide type="bottom" id="poA-QE-iNR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ql1-k4-pDe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEQ-aP-0Uf">

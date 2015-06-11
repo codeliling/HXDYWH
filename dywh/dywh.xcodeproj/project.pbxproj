@@ -23,6 +23,7 @@
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
 		DB5BA5391B281B2600492A49 /* VideoBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */; };
+		DB8F41591B29710900EF377F /* TimerStringTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8F41581B29710900EF377F /* TimerStringTools.swift */; };
 		DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; };
 		DBB559591B21E5F00069089E /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DBB5595C1B21E5F60069089E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559451B21E5C10069089E /* Alamofire.framework */; };
@@ -169,6 +170,7 @@
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoBubbleView.swift; sourceTree = "<group>"; };
+		DB8F41581B29710900EF377F /* TimerStringTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerStringTools.swift; sourceTree = "<group>"; };
 		DBB5593D1B21E5C10069089E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../../OpenSource/swift/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		DBB5594C1B21E5CA0069089E /* Haneke.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Haneke.xcodeproj; path = ../../../OpenSource/swift/HanekeSwift/Haneke.xcodeproj; sourceTree = "<group>"; };
 		DBB559601B21E8810069089E /* VideoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMapViewController.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				DBB559881B251EE70069089E /* ServerUrl.swift */,
+				DB8F41581B29710900EF377F /* TimerStringTools.swift */,
 			);
 			path = commons;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				DBB5596A1B21EB640069089E /* MusicModel.swift in Sources */,
 				DBFA4F8B1B0EB338007D8F9B /* ArticleMapViewController.swift in Sources */,
 				DBB559661B21E96D0069089E /* AudioStreamer.m in Sources */,
+				DB8F41591B29710900EF377F /* TimerStringTools.swift in Sources */,
 				DBB5597B1B22E0380069089E /* MusicTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

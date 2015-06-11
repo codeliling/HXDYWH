@@ -44,17 +44,19 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(animated: Bool) {
-        
+        super.viewDidAppear(animated)
         if (mapViewController == nil){
             mapViewController = VideoMapViewController()
-            mapViewController?.view.frame = CGRectMake(0, videoTableView.frame.origin.y,videoTableView.frame.size.width, videoTableView.frame.size.height)
             mapViewController!.view.backgroundColor = UIColor.redColor()
+            var rectStatus = UIApplication.sharedApplication().statusBarFrame
+            var rectNav = self.navigationController!.navigationBar.frame
+            
+            mapViewController?.view.frame = CGRectMake(0, rectStatus.size.height + rectNav.size.height + 40,UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
             self.loadingVideoDataList()
         }
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,6 +106,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         player.shouldAutoplay = true;
         player.controlStyle = MPMovieControlStyle.Fullscreen;
         player.scalingMode = MPMovieScalingMode.AspectFill;
+        
         player.play()
         
         self.presentMoviePlayerViewControllerAnimated(mp)
@@ -175,8 +178,6 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         println("video view did disappear")
-        mapViewController?.view.removeFromSuperview()
-        mapViewController = nil
     }
     
     override func didReceiveMemoryWarning() {

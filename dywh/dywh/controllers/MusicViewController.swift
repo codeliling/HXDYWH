@@ -40,6 +40,11 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     var cdViewAngle:CGFloat = 1.0
     var cycleAnimationFlag:Bool = true
     
+    var timer:NSTimer?
+    
+    var leftTimerLayer:CATextLayer!
+    var rightTimerLayer:CATextLayer!
+    
     @IBOutlet weak var musicProgressView: UIProgressView!
     
     override func viewDidLoad() {
@@ -107,12 +112,26 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         playLayer.addTarget(self, action: "playBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
         musicView.addSubview(playLayer)
         
+        leftTimerLayer = CATextLayer()
+        leftTimerLayer.fontSize = 14.0
+        leftTimerLayer.alignmentMode = kCAAlignmentLeft
+        leftTimerLayer.contentsScale = 2.0
+        leftTimerLayer.foregroundColor = UIColor.grayColor().CGColor
+        leftTimerLayer.frame = CGRectMake(10, 110, 80, 15)
+        self.musicView.layer.addSublayer(leftTimerLayer)
+        
+        rightTimerLayer = CATextLayer()
+        rightTimerLayer.fontSize = 14.0
+        rightTimerLayer.alignmentMode = kCAAlignmentLeft
+        rightTimerLayer.contentsScale = 2.0
+        rightTimerLayer.foregroundColor = UIColor.grayColor().CGColor
+        rightTimerLayer.frame = CGRectMake(10, 110, 80, 15)
+        self.musicView.layer.addSublayer(rightTimerLayer)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.tableFooterView = UIView(frame: CGRectZero);
-        
-        self.loadingMusicDataList()
         
         listBtn.selected = true
         mapBtn.selected = false
@@ -127,6 +146,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
+            self.loadingMusicDataList()
         }
         
     }
@@ -187,6 +207,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
+            println(audioStream?.totalTime())
         }
         else{
             //show Tips
@@ -206,6 +227,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
+            println(audioStream?.totalTime())
         }
         else{
             //show Tips
@@ -244,10 +266,15 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         musicNameLayer.string = musicModel.musicName
         authorNameLayer.string = musicModel.musicAuthor
         if (musicModel.musicFileUrl != nil){
+            if audioStream != nil{
+                audioStream?.stop()
+            }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
+            println("***********\(audioStream?.totalTime())")
             currentMusicIndex = indexPath.row
             self.CDCycleAnimation(cdView)
+            self.startUpdateProgressView()
         }
         
     }
@@ -288,6 +315,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                             musicModel?.musicId = tempDict.objectForKey("id") as! Int
                             musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
                             self.musicList.append(musicModel!)
+                            self.mapViewController?.addMapPoint(musicModel!)
                         }
                         self.tableView.reloadData()
                     }
@@ -313,11 +341,43 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         }
     }
     
+    func startUpdateProgressView(){
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateProgressView", userInfo: nil, repeats:true)
+        timer!.fire()
+    }
+    
+    func updateProgressView(){
+        println(audioStream?.totalTime())
+        println(audioStream?.currentTime())
+        var totalTime = TimerStringTools().getTotleTime(audioStream!.totalTime())
+        if totalTime > 0{
+            rightTimerLayer.string = totalTime
+            leftTimerLayer.string = audioStream?.currentTime()
+        }
+        
+        if audioStream != nil{
+            if audioStream!.isFinishing(){
+                timer!.invalidate()
+            }
+        }
+        
+        /*
+        if(audioStream?.currentTime() < audioStream?.duration)
+        {
+            musicProgressView.progress = audioStream.currentTime/audioStream.duration;
+        }
+        else
+        {
+            musicProgressView.progress = 0;
+            
+            timer?.invalidate()
+        }
+        */
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         println("music view did disappear")
-        mapViewController?.view.removeFromSuperview()
-        mapViewController = nil
     }
     
     override func didReceiveMemoryWarning() {
