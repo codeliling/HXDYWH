@@ -41,12 +41,13 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     var cycleAnimationFlag:Bool = true
     
     var timer:NSTimer?
-    
+    var settingTotalTime:Bool = false
     var leftTimerLayer:CATextLayer!
     var rightTimerLayer:CATextLayer!
     
     @IBOutlet weak var musicProgressView: UIProgressView!
     
+    @IBOutlet weak var activeIndicatorView: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -116,16 +117,16 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         leftTimerLayer.fontSize = 14.0
         leftTimerLayer.alignmentMode = kCAAlignmentLeft
         leftTimerLayer.contentsScale = 2.0
-        leftTimerLayer.foregroundColor = UIColor.grayColor().CGColor
-        leftTimerLayer.frame = CGRectMake(10, 110, 80, 15)
+        leftTimerLayer.foregroundColor = UIColor.blackColor().CGColor
+        leftTimerLayer.frame = CGRectMake(10, 150, 60, 15)
         self.musicView.layer.addSublayer(leftTimerLayer)
         
         rightTimerLayer = CATextLayer()
         rightTimerLayer.fontSize = 14.0
         rightTimerLayer.alignmentMode = kCAAlignmentLeft
         rightTimerLayer.contentsScale = 2.0
-        rightTimerLayer.foregroundColor = UIColor.grayColor().CGColor
-        rightTimerLayer.frame = CGRectMake(10, 110, 80, 15)
+        rightTimerLayer.foregroundColor = UIColor.blackColor().CGColor
+        rightTimerLayer.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 50, 150, 40, 15)
         self.musicView.layer.addSublayer(rightTimerLayer)
         
         tableView.dataSource = self
@@ -196,6 +197,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     func preBtnClick(target:UIButton){
         currentMusicIndex--
+        resetPlayMusicStatus()
         if (currentMusicIndex >= 0){
             cdViewAngle = 1.0
             var musicModel:MusicModel = musicList[currentMusicIndex]
@@ -216,6 +218,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     func nextBtnClick(target:UIButton){
         currentMusicIndex++
+        resetPlayMusicStatus()
         if (currentMusicIndex < musicList.count){
             cdViewAngle = 1.0
             var musicModel:MusicModel = musicList[currentMusicIndex]
@@ -255,12 +258,12 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         var cell:MusicTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! MusicTableViewCell
-        cell.musicContentView.boardIconLayer.opacity = 0
+        cell.musicContentView.boardIconLayer.hidden = true
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(indexPath) as? MusicTableViewCell
-        cell?.musicContentView.boardIconLayer.opacity = 1.0
+        cell?.musicContentView.boardIconLayer.hidden = false
         
         var musicModel:MusicModel = musicList[indexPath.row]
         musicNameLayer.string = musicModel.musicName
@@ -271,7 +274,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
-            println("***********\(audioStream?.totalTime())")
+            resetPlayMusicStatus()
             currentMusicIndex = indexPath.row
             self.CDCycleAnimation(cdView)
             self.startUpdateProgressView()
@@ -284,6 +287,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func loadingMusicDataList(){
+        self.activeIndicatorView.hidden = false
+        self.activeIndicatorView.startAnimating()
         Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
@@ -320,6 +325,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                         self.tableView.reloadData()
                     }
                 }
+                self.activeIndicatorView.hidden = true
+                self.activeIndicatorView.stopAnimating()
         }
     }
     
@@ -341,6 +348,11 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         }
     }
     
+    func resetPlayMusicStatus(){
+        musicProgressView.progress = 0.0
+        settingTotalTime = false
+    }
+    
     func startUpdateProgressView(){
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateProgressView", userInfo: nil, repeats:true)
         timer!.fire()
@@ -349,30 +361,30 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func updateProgressView(){
         println(audioStream?.totalTime())
         println(audioStream?.currentTime())
-        var totalTime = TimerStringTools().getTotleTime(audioStream!.totalTime())
-        if totalTime > 0{
-            rightTimerLayer.string = totalTime
-            leftTimerLayer.string = audioStream?.currentTime()
-        }
-        
+        println(audioStream?.duration)
         if audioStream != nil{
+            var totalTime = TimerStringTools().getTotleTime(audioStream!.totalTime())
+            if totalTime > 0 {
+                if !settingTotalTime{
+                    
+                    rightTimerLayer.string = (audioStream!.totalTime() as NSString).substringFromIndex(1)
+                }
+                settingTotalTime = true
+                leftTimerLayer.string = audioStream?.currentTime()
+            }
+            
+            var currentTime:Int = TimerStringTools().getCurrentTotleTime(audioStream!.currentTime())
+            if(Double(currentTime) < audioStream!.duration)
+            {
+                musicProgressView.progress = Float(Double(currentTime)/audioStream!.duration)
+            }
+            
             if audioStream!.isFinishing(){
+                leftTimerLayer.string = "00:00"
+                musicProgressView.progress = 0.0
                 timer!.invalidate()
             }
         }
-        
-        /*
-        if(audioStream?.currentTime() < audioStream?.duration)
-        {
-            musicProgressView.progress = audioStream.currentTime/audioStream.duration;
-        }
-        else
-        {
-            musicProgressView.progress = 0;
-            
-            timer?.invalidate()
-        }
-        */
     }
     
     override func viewDidDisappear(animated: Bool) {

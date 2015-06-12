@@ -26,6 +26,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     var player:MPMoviePlayerController!
     var videoList:[VideoModel] = []
     
+    @IBOutlet weak var activeIndicatorView: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -134,6 +135,8 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     }
     
     func loadingVideoDataList(){
+        self.activeIndicatorView.hidden = false
+        self.activeIndicatorView.startAnimating()
         Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
@@ -172,6 +175,8 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                         self.videoTableView.reloadData()
                     }
                 }
+                self.activeIndicatorView.hidden = true
+                self.activeIndicatorView.stopAnimating()
         }
     }
     

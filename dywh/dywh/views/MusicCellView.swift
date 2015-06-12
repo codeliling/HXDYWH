@@ -29,7 +29,10 @@ class MusicCellView: UIView {
     
     override func drawRect(rect: CGRect) {
         
-        boardIconLayer.frame = CGRectMake(10, self.frame.origin.y + 10, self.frame.size.height - 20, self.frame.size.height - 20)
+        boardIconLayer.frame = CGRectMake(0, self.frame.origin.y + 10, self.frame.size.height - 25, self.frame.size.height - 25)
+        boardIconLayer.contents = UIImage(named: "musicPlaying")?.CGImage
+        boardIconLayer.hidden = true
+        self.layer.addSublayer(boardIconLayer)
         
         musicNameTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         musicNameTextLayer.string = musicName

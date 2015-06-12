@@ -14,6 +14,8 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     var articleId:Int!
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +33,7 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         webView.loadRequest(NSURLRequest(URL:NSURL(string: ServerUrl.ServerArticleDetailURL + String(articleId))!))
     }
     
@@ -46,15 +49,17 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        
+        activityIndicatorView.stopAnimating()
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
-        
+        activityIndicatorView.hidden = false
+        activityIndicatorView.startAnimating()
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.hidden = true
     }
     
     func shareBtnClick(){

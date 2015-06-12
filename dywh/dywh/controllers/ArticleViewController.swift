@@ -26,6 +26,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     var articleList:[ArticleModel] = []
     
+    @IBOutlet weak var activeIndicatorView: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,6 +163,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     }
     
     func loadingArticleDataList(){
+        activeIndicatorView.hidden = false
+        activeIndicatorView.startAnimating()
         Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1"])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
@@ -194,6 +198,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
                         self.collectionView.reloadData()
                     }
                 }
+                self.activeIndicatorView.hidden = true
+                self.activeIndicatorView.stopAnimating()
         }
     }
     

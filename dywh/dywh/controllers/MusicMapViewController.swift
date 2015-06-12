@@ -18,11 +18,14 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
     var progressView:UIProgressView!
     var musicName:CATextLayer!
     var musicAuthor:CATextLayer!
-    var timeLayer:CATextLayer!
+    var leftTimeLayer:CATextLayer!
+    var rightTimeLayer:CATextLayer!
     
     var audioStream:AudioStreamer?
     var cdViewAngle:CGFloat = 1.0
     var cycleAnimationFlag:Bool = true
+    var timer:NSTimer?
+    var settingTotalTime:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,13 +86,21 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
         musicAuthor.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width/2 - 100, 30, 200, 20)
         self.musicPanel.layer.addSublayer(musicAuthor)
         
-        timeLayer = CATextLayer()
-        timeLayer.fontSize = 14.0
-        timeLayer.alignmentMode = kCAAlignmentLeft
-        timeLayer.contentsScale = 2.0
-        timeLayer.foregroundColor = UIColor.grayColor().CGColor
-        timeLayer.frame = CGRectMake(10, 50, 80, 15)
-        self.musicPanel.layer.addSublayer(timeLayer)
+        leftTimeLayer = CATextLayer()
+        leftTimeLayer.fontSize = 14.0
+        leftTimeLayer.alignmentMode = kCAAlignmentLeft
+        leftTimeLayer.contentsScale = 2.0
+        leftTimeLayer.foregroundColor = UIColor.grayColor().CGColor
+        leftTimeLayer.frame = CGRectMake(10, 50, 80, 15)
+        self.musicPanel.layer.addSublayer(leftTimeLayer)
+        
+        rightTimeLayer = CATextLayer()
+        rightTimeLayer.fontSize = 14.0
+        rightTimeLayer.alignmentMode = kCAAlignmentLeft
+        rightTimeLayer.contentsScale = 2.0
+        rightTimeLayer.foregroundColor = UIColor.grayColor().CGColor
+        rightTimeLayer.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width - 70, 50, 80, 15)
+        self.musicPanel.layer.addSublayer(rightTimeLayer)
         
         progressView = UIProgressView(frame: CGRectMake(0, 68, UIScreen.mainScreen().bounds.size.width - 20, 2))
         progressView.trackTintColor = UIColor(red: 229/255.0, green: 0, blue: 55.0/255.0, alpha: 1.0)
@@ -164,7 +175,9 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
                 cycleAnimationFlag = true
                 button.setBackgroundImage(UIImage(named: "musicPlayIcon"), forState: UIControlState.Normal)
                 self.CDCycleAnimation(cdView)
+                resetPlayMusicStatus()
             }
+            startUpdateProgressView()
         }
     }
     
@@ -187,6 +200,43 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
                 if self.cycleAnimationFlag{
                     self.CDCycleAnimation(cdView)
                 }
+        }
+    }
+    
+    func resetPlayMusicStatus(){
+        progressView.progress = 0.0
+        settingTotalTime = false
+    }
+    
+    func startUpdateProgressView(){
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateProgressView", userInfo: nil, repeats:true)
+        timer!.fire()
+    }
+    
+    func updateProgressView(){
+        
+        if audioStream != nil{
+            var totalTime = TimerStringTools().getTotleTime(audioStream!.totalTime())
+            if totalTime > 0 {
+                if !settingTotalTime{
+                    
+                    rightTimeLayer.string = (audioStream!.totalTime() as NSString).substringFromIndex(1)
+                }
+                settingTotalTime = true
+                leftTimeLayer.string = audioStream?.currentTime()
+            }
+            
+            var currentTime:Int = TimerStringTools().getCurrentTotleTime(audioStream!.currentTime())
+            if(Double(currentTime) < audioStream!.duration)
+            {
+                progressView.progress = Float(Double(currentTime)/audioStream!.duration)
+            }
+            
+            if audioStream!.isFinishing(){
+                leftTimeLayer.string = "00:00"
+                progressView.progress = 0.0
+                timer!.invalidate()
+            }
         }
     }
     
