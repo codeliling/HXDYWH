@@ -47,9 +47,9 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         listBtn.selected = true
         mapBtn.selected = false
         
-        videoTableView.addInfiniteScrollingWithActionHandler { () -> Void in
-            ++self.currentPage
+        videoTableView.addPullToRefreshWithActionHandler{ () -> Void in
             self.loadingVideoDataList()
+            self.currentPage++
         }
     }
     
@@ -65,7 +65,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            self.videoTableView.triggerInfiniteScrolling()
+            self.videoTableView.triggerPullToRefresh()
         }
     }
     
@@ -146,7 +146,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     func loadingVideoDataList(){
         self.activeIndicatorView.hidden = false
         self.activeIndicatorView.startAnimating()
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2","limit":limit,"offset":limit*currentPage])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2","limit":limit,"offset":limit*(currentPage - 1)])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -159,33 +159,42 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                     var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
                     var success:Int = dataDict?.objectForKey("success") as! Int
                     var count:Int = dataDict?.objectForKey("count") as! Int
-                    if success == 1 && count > 0{
+                    if success == 1{
                         var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
-                        var videoModel:VideoModel?
-                        for tempDict in articles{
-                            videoModel = VideoModel()
-                            videoModel?.videoName = tempDict.objectForKey("title") as? String
-                            var locationDict:NSDictionary = tempDict.objectForKey("location") as! NSDictionary
-                            videoModel?.videoCite = locationDict.objectForKey("city") as? String
-                            var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
-                            if (assetArray?.count > 0){
-                                var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
-                                videoModel?.videoFileUrl = assetDict.objectForKey("media_file") as? String
+                        if articles.count > 0{
+                            var videoModel:VideoModel?
+                            for tempDict in articles{
+                                videoModel = VideoModel()
+                                videoModel?.videoName = tempDict.objectForKey("title") as? String
+                                var locationDict:NSDictionary = tempDict.objectForKey("location") as! NSDictionary
+                                videoModel?.videoCite = locationDict.objectForKey("city") as? String
+                                var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
+                                if (assetArray?.count > 0){
+                                    var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
+                                    videoModel?.videoFileUrl = assetDict.objectForKey("media_file") as? String
+                                }
+                                
+                                videoModel?.videoId = tempDict.objectForKey("id") as! Int
+                                videoModel?.videoImageUrl = tempDict.objectForKey("profile") as? String
+                                videoModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                                videoModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                                videoModel?.videoDescription = tempDict.objectForKey("description") as? String
+                                self.videoList.insert(videoModel!, atIndex: 0)
+                                self.mapViewController?.addMapPoint(videoModel!)
                             }
-                            
-                            videoModel?.videoId = tempDict.objectForKey("id") as! Int
-                            videoModel?.videoImageUrl = tempDict.objectForKey("profile") as? String
-                            videoModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
-                            videoModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
-                            videoModel?.videoDescription = tempDict.objectForKey("description") as? String
-                            self.videoList.append(videoModel!)
-                            self.mapViewController?.addMapPoint(videoModel!)
+                            self.videoTableView.reloadData()
                         }
-                        self.videoTableView.reloadData()
+                        else{
+                            self.view.makeToast("无更多数据！")
+                        }
+                    }
+                    else{
+                        self.view.makeToast("获取数据失败！")
                     }
                 }
                 self.activeIndicatorView.hidden = true
                 self.activeIndicatorView.stopAnimating()
+                self.videoTableView.pullToRefreshView.stopAnimating()
         }
     }
     

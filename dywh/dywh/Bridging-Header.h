@@ -14,4 +14,5 @@
 #import "libs/BaiduStatistic/BaiduMobStat.h"
 #import "libs/AudioStream/AudioStreamer.h"
 #import "libs/SVPullToRefresh/SVPullToRefresh.h"
+#import <Frontia/Frontia.h>
 #endif

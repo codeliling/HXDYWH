@@ -140,9 +140,9 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         listBtn.selected = true
         mapBtn.selected = false
         
-        tableView.addInfiniteScrollingWithActionHandler { () -> Void in
-            ++self.currentPage
+        tableView.addPullToRefreshWithActionHandler{ () -> Void in
             self.loadingMusicDataList()
+            self.currentPage++
         }
     }
     
@@ -155,7 +155,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            self.tableView.triggerInfiniteScrolling()
+            self.tableView.triggerPullToRefresh()
         }
         
     }
@@ -297,7 +297,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func loadingMusicDataList(){
         self.activeIndicatorView.hidden = false
         self.activeIndicatorView.startAnimating()
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3","limit":limit,"offset":limit*currentPage])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3","limit":limit,"offset":limit*(currentPage-1)])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -310,31 +310,40 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                     var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
                     var success:Int = dataDict?.objectForKey("success") as! Int
                     var count:Int = dataDict?.objectForKey("count") as! Int
-                    if success == 1 && count > 0{
+                    if success == 1{
                         var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
-                        var musicModel:MusicModel?
-                        for tempDict in articles{
-                            musicModel = MusicModel()
-                            musicModel?.musicName = tempDict.objectForKey("title") as? String
-                            musicModel?.musicAuthor = tempDict.objectForKey("author") as? String
-                            var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
-                            if (assetArray?.count > 0){
-                                var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
-                                musicModel?.musicFileUrl = assetDict.objectForKey("media_file") as? String
+                        if articles.count > 0{
+                            var musicModel:MusicModel?
+                            for tempDict in articles{
+                                musicModel = MusicModel()
+                                musicModel?.musicName = tempDict.objectForKey("title") as? String
+                                musicModel?.musicAuthor = tempDict.objectForKey("author") as? String
+                                var assetArray:NSArray? = tempDict.objectForKey("assets") as? NSArray
+                                if (assetArray?.count > 0){
+                                    var assetDict:NSDictionary = assetArray?.objectAtIndex(0) as! NSDictionary
+                                    musicModel?.musicFileUrl = assetDict.objectForKey("media_file") as? String
+                                }
+                                musicModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                                musicModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                                musicModel?.musicDescription = tempDict.objectForKey("description") as? String
+                                musicModel?.musicId = tempDict.objectForKey("id") as! Int
+                                musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
+                                self.musicList.insert(musicModel!, atIndex: 0)
+                                self.mapViewController?.addMapPoint(musicModel!)
                             }
-                            musicModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
-                            musicModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
-                            musicModel?.musicDescription = tempDict.objectForKey("description") as? String
-                            musicModel?.musicId = tempDict.objectForKey("id") as! Int
-                            musicModel?.musicImageUrl = tempDict.objectForKey("profile") as? String
-                            self.musicList.append(musicModel!)
-                            self.mapViewController?.addMapPoint(musicModel!)
+                            self.tableView.reloadData()
                         }
-                        self.tableView.reloadData()
+                        else{
+                            self.view.makeToast("无更多数据！")
+                        }
+                    }
+                    else{
+                        self.view.makeToast("获取数据失败！")
                     }
                 }
                 self.activeIndicatorView.hidden = true
                 self.activeIndicatorView.stopAnimating()
+                self.tableView.pullToRefreshView.stopAnimating()
         }
     }
     

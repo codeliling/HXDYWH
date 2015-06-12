@@ -38,6 +38,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        //collectionView.alwaysBounceVertical = true
         
         listBtn.setBackgroundImage(UIImage(named: "btnSelected"), forState: UIControlState.Selected)
         listBtn.setBackgroundImage(UIImage(named: "btnNormal"), forState: UIControlState.Normal)
@@ -53,9 +54,9 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         listBtn.selected = true
         mapBtn.selected = false
         
-        collectionView.addInfiniteScrollingWithActionHandler { () -> Void in
-            ++self.currentPage
+        collectionView.addPullToRefreshWithActionHandler{ () -> Void in
             self.loadingArticleDataList()
+            self.currentPage++
         }
     }
 
@@ -68,7 +69,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            collectionView.triggerInfiniteScrolling()
+            collectionView.triggerPullToRefresh()
         }
         
     }
@@ -173,8 +174,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     func loadingArticleDataList(){
         activeIndicatorView.hidden = false
         activeIndicatorView.startAnimating()
-        
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1","limit":limit,"offset":limit*currentPage])
+        println("************\(currentPage)")
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1","limit":limit,"offset":limit*(currentPage - 1)])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")
@@ -187,28 +188,37 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
                     var dataDict:NSDictionary? = resultDict?.objectForKey("data") as? NSDictionary
                     var success:Int = dataDict?.objectForKey("success") as! Int
                     var count:Int = dataDict?.objectForKey("count") as! Int
-                    if success == 1 && count > 0{
+                    if success == 1{
                         var articles:NSArray = dataDict?.objectForKey("articles") as! NSArray
-                        var articleModel:ArticleModel?
-                        for tempDict in articles{
-                            articleModel = ArticleModel()
-                            articleModel?.articleName = tempDict.objectForKey("title") as? String
-                            var categoryDict:NSDictionary? = tempDict.objectForKey("category") as? NSDictionary
-                            articleModel?.articleTag = categoryDict?.objectForKey("name") as? String
-                            articleModel?.articleImageUrl = tempDict.objectForKey("profile") as? String
-                            articleModel?.articleId = tempDict.objectForKey("id") as! Int
-                            articleModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
-                            articleModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
-                            articleModel?.articleDescription = tempDict.objectForKey("description") as? String
-                            self.articleList.append(articleModel!)
-                            self.mapViewController?.addMapPoint(articleModel!)
+                        if (articles.count > 0){
+                            var articleModel:ArticleModel?
+                            for tempDict in articles{
+                                articleModel = ArticleModel()
+                                articleModel?.articleName = tempDict.objectForKey("title") as? String
+                                var categoryDict:NSDictionary? = tempDict.objectForKey("category") as? NSDictionary
+                                articleModel?.articleTag = categoryDict?.objectForKey("name") as? String
+                                articleModel?.articleImageUrl = tempDict.objectForKey("profile") as? String
+                                articleModel?.articleId = tempDict.objectForKey("id") as! Int
+                                articleModel?.latitude = tempDict.objectForKey("latitude") as! CGFloat
+                                articleModel?.longitude = tempDict.objectForKey("longitude") as! CGFloat
+                                articleModel?.articleDescription = tempDict.objectForKey("description") as? String
+                                self.articleList.insert(articleModel!, atIndex: 0)
+                                self.mapViewController?.addMapPoint(articleModel!)
+                            }
+                            //self.mapViewController?.articleList = self.articleList
+                            self.collectionView.reloadData()
                         }
-                        //self.mapViewController?.articleList = self.articleList
-                        self.collectionView.reloadData()
+                        else{
+                            self.view.makeToast("无更多数据！")
+                        }
+                    }
+                    else{
+                        self.view.makeToast("获取数据失败！")
                     }
                 }
                 self.activeIndicatorView.hidden = true
                 self.activeIndicatorView.stopAnimating()
+                self.collectionView.pullToRefreshView.stopAnimating()
         }
     }
     
