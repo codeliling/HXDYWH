@@ -23,6 +23,8 @@
 		DB2EB9031AC108940099934F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */; };
 		DB2EB9051AC108A10099934F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2EB9041AC108A10099934F /* Security.framework */; };
 		DB5BA5391B281B2600492A49 /* VideoBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */; };
+		DB8B6EBC1B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8B6EB91B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.m */; };
+		DB8B6EBD1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8B6EBB1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.m */; };
 		DB8F41591B29710900EF377F /* TimerStringTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8F41581B29710900EF377F /* TimerStringTools.swift */; };
 		DBB559581B21E5F00069089E /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; };
 		DBB559591B21E5F00069089E /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBB559531B21E5CA0069089E /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -170,6 +172,11 @@
 		DB2EB9021AC108940099934F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		DB2EB9041AC108A10099934F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DB5BA5381B281B2600492A49 /* VideoBubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoBubbleView.swift; sourceTree = "<group>"; };
+		DB8B6EB71B2A909500B13A93 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		DB8B6EB81B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		DB8B6EB91B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		DB8B6EBA1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		DB8B6EBB1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		DB8F41581B29710900EF377F /* TimerStringTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerStringTools.swift; sourceTree = "<group>"; };
 		DBB5593D1B21E5C10069089E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../../../OpenSource/swift/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		DBB5594C1B21E5CA0069089E /* Haneke.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Haneke.xcodeproj; path = ../../../OpenSource/swift/HanekeSwift/Haneke.xcodeproj; sourceTree = "<group>"; };
@@ -311,6 +318,18 @@
 			children = (
 			);
 			path = maptools;
+			sourceTree = "<group>";
+		};
+		DB8B6EB61B2A909500B13A93 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				DB8B6EB71B2A909500B13A93 /* SVPullToRefresh.h */,
+				DB8B6EB81B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.h */,
+				DB8B6EB91B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.m */,
+				DB8B6EBA1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.h */,
+				DB8B6EBB1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		DBB5593E1B21E5C10069089E /* Products */ = {
@@ -469,6 +488,7 @@
 		DBBE717C1AAEC9F90010681A /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DB8B6EB61B2A909500B13A93 /* SVPullToRefresh */,
 				DBB5596D1B21F1810069089E /* RAMAnimationTabBar */,
 				DBB559631B21E96D0069089E /* AudioStream */,
 				DB1BF8FC1B0D9000001DA2FC /* BaiduStatistic */,
@@ -646,6 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFA4F911B0F15C5007D8F9B /* MusicViewController.swift in Sources */,
+				DB8B6EBC1B2A909500B13A93 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				DBB559721B21F1810069089E /* RAMBounceAnimation.swift in Sources */,
 				DBB559751B21F3060069089E /* HomeTabBarController.swift in Sources */,
 				DBB559711B21F1810069089E /* RAMAnimatedTabBarItem.swift in Sources */,
@@ -658,6 +679,7 @@
 				DBFA4F971B0F18DE007D8F9B /* VideoCellView.swift in Sources */,
 				DBBE715E1AAE91A50010681A /* ViewController.swift in Sources */,
 				DBB5596C1B21EB880069089E /* VideoModel.swift in Sources */,
+				DB8B6EBD1B2A909500B13A93 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				DBFA4F931B0F1609007D8F9B /* MusicMapViewController.swift in Sources */,
 				DBBE715C1AAE91A50010681A /* AppDelegate.swift in Sources */,
 				DB2EB8EB1AC0FF7B0099934F /* ArticleViewController.swift in Sources */,

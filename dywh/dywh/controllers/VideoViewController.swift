@@ -27,6 +27,10 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     var videoList:[VideoModel] = []
     
     @IBOutlet weak var activeIndicatorView: UIActivityIndicatorView!
+    
+    var currentPage:Int = 1
+    let limit:Int = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +46,11 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         
         listBtn.selected = true
         mapBtn.selected = false
+        
+        videoTableView.addInfiniteScrollingWithActionHandler { () -> Void in
+            ++self.currentPage
+            self.loadingVideoDataList()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -56,7 +65,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            self.loadingVideoDataList()
+            self.videoTableView.triggerInfiniteScrolling()
         }
     }
     
@@ -137,7 +146,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
     func loadingVideoDataList(){
         self.activeIndicatorView.hidden = false
         self.activeIndicatorView.startAnimating()
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2"])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"2","limit":limit,"offset":limit*currentPage])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")

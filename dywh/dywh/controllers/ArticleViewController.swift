@@ -28,6 +28,9 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     
     @IBOutlet weak var activeIndicatorView: UIActivityIndicatorView!
     
+    var currentPage:Int = 1
+    let limit:Int = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +52,11 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
                 
         listBtn.selected = true
         mapBtn.selected = false
+        
+        collectionView.addInfiniteScrollingWithActionHandler { () -> Void in
+            ++self.currentPage
+            self.loadingArticleDataList()
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -60,7 +68,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            loadingArticleDataList()
+            collectionView.triggerInfiniteScrolling()
         }
         
     }
@@ -165,7 +173,8 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     func loadingArticleDataList(){
         activeIndicatorView.hidden = false
         activeIndicatorView.startAnimating()
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1"])
+        
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1","limit":limit,"offset":limit*currentPage])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")

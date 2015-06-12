@@ -40,6 +40,9 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     var cdViewAngle:CGFloat = 1.0
     var cycleAnimationFlag:Bool = true
     
+    var currentPage:Int = 1
+    let limit:Int = 10
+    
     var timer:NSTimer?
     var settingTotalTime:Bool = false
     var leftTimerLayer:CATextLayer!
@@ -136,6 +139,11 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         
         listBtn.selected = true
         mapBtn.selected = false
+        
+        tableView.addInfiniteScrollingWithActionHandler { () -> Void in
+            ++self.currentPage
+            self.loadingMusicDataList()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -147,7 +155,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.addChildViewController(mapViewController!)
             self.view.addSubview(mapViewController!.view)
             mapViewController!.view.hidden = true
-            self.loadingMusicDataList()
+            self.tableView.triggerInfiniteScrolling()
         }
         
     }
@@ -289,7 +297,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func loadingMusicDataList(){
         self.activeIndicatorView.hidden = false
         self.activeIndicatorView.startAnimating()
-        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3"])
+        Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"3","limit":limit,"offset":limit*currentPage])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {
                     NSLog("Error: \(error)")

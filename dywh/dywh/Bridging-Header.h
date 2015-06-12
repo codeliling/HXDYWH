@@ -13,4 +13,5 @@
 #import "libs/Toast/UIView+Toast.h"
 #import "libs/BaiduStatistic/BaiduMobStat.h"
 #import "libs/AudioStream/AudioStreamer.h"
+#import "libs/SVPullToRefresh/SVPullToRefresh.h"
 #endif
