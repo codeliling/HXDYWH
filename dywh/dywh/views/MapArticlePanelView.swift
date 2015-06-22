@@ -37,7 +37,7 @@ class MapArticlePanelView: UIView {
         titleLayer.contentsScale = 2.0
         self.layer.addSublayer(titleLayer)
         
-        descriptionLayer.frame = CGRectMake(self.frame.width / 7 * 3 + 10, 10 + self.frame.height / 3, self.frame.width / 7 * 3, self.frame.height / 3 * 2)
+        descriptionLayer.frame = CGRectMake(self.frame.width / 7 * 3 + 10, 10 + self.frame.height / 3, self.frame.width / 7 * 3, self.frame.height / 3 * 2 - 5)
         descriptionLayer.foregroundColor = UIColor
             .darkGrayColor().CGColor
         descriptionLayer.string = articleDescription

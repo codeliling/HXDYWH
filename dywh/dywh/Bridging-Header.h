@@ -14,5 +14,6 @@
 #import "libs/BaiduStatistic/BaiduMobStat.h"
 #import "libs/AudioStream/AudioStreamer.h"
 #import "libs/SVPullToRefresh/SVPullToRefresh.h"
-#import <Frontia/Frontia.h>
+#import "libs/UMSocial_Sdk_4.2.3/Header/UMSocial.h"
+#import "libs/Wechat/UMSocialWechatHandler.h"
 #endif

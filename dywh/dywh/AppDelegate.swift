@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mapManager = BMKMapManager()
         mapManager?.start("ksRAoNWuCSloyKb3ImbOqbgk", generalDelegate: nil)
         
+        UMSocialData.setAppKey("556a5c3e67e58e57a3003c8a")
+        UMSocialWechatHandler.setWXAppId("wx6567681abede8c20", appSecret: "853182c62c7e1f2d6398479cdd482bfe", url: "http://www.umeng.com/social");
+        UMSocialData.defaultData().extConfig.wxMessageType = UMSocialWXMessageTypeApp
         return true
     }
 
@@ -52,6 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+    
 
 
 }

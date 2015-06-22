@@ -22,11 +22,14 @@ class SettingTableViewController: UITableViewController {
         }
         
         self.navigationController?.navigationBar.titleTextAttributes = attributes;
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = UITableViewCellSelectionStyle.Default
         if (indexPath.row == 0){
-        
+            cache.removeAll()
+            self.view.makeToast("清除成功！", duration: 2.0, position: CSToastPositionBottom)
         }
         else if (indexPath.row == 1){
         

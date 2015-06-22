@@ -91,7 +91,7 @@ class ArticleMapViewController: UIViewController,BMKMapViewDelegate {
     func panelClick(gesture:UIGestureRecognizer){
         if articleModel != nil{
             var detailViewController:ArticleDetailViewController? = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ArticleDetail") as? ArticleDetailViewController
-            detailViewController?.articleId = articleModel!.articleId
+            detailViewController?.articleModel = articleModel
             self.navigationController?.pushViewController(detailViewController!, animated: true)
         }
     }

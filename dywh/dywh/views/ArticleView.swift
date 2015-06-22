@@ -10,7 +10,6 @@ import Foundation
 
 class ArticleView: UIView {
     
-    var imageName:String?
     var titleName:String?
     var tagName:String?
     
@@ -18,8 +17,7 @@ class ArticleView: UIView {
     var imageLayer:CALayer!
     var typeLayer:CATextLayer!
     
-    init(frame: CGRect, imageName:String, titleName:String,tagName:String) {
-        self.imageName = imageName
+    init(frame: CGRect, titleName:String,tagName:String) {
         self.titleName = titleName
         self.tagName = tagName
         super.init(frame:frame)
@@ -33,12 +31,9 @@ class ArticleView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        var image = UIImage(named: imageName!)
-        var imageCG = image?.CGImage
-        //image?.drawAtPoint(CGPointZero)
         
         imageLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-        imageLayer.contents = imageCG
+        //imageLayer.contents = imageCG
         self.layer.addSublayer(imageLayer)
         
         var backLayer:CALayer = CALayer()
@@ -49,7 +44,7 @@ class ArticleView: UIView {
         
         titleLayer.foregroundColor = UIColor.whiteColor().CGColor
         titleLayer.string = titleName
-        titleLayer.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width, 20)
+        titleLayer.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width - 30, 20)
         titleLayer.fontSize = 16.0
         titleLayer.contentsScale = 2.0
         titleLayer.alignmentMode = kCAAlignmentJustified

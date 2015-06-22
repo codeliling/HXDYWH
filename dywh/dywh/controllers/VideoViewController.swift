@@ -87,13 +87,16 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                 reuseIdentifier: identifier)
             cell?.frame = CGRectMake(0, 0, tableView.frame.size.width, 200)
             cell?.backgroundColor = UIColor.blackColor()
-            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), bgImage: UIImage(named: "videoBg1")!, titleText: videoModel.videoName!, locationText: videoModel.videoCite!, videoTimeLongText: "")
+            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), titleText: videoModel.videoName!, locationText: videoModel.videoCite!, videoTimeLongText: "")
+            videoCellView.imageLayer.contents = UIImage(named: "videoBg1")!.CGImage
             cell?.addSubview(videoCellView)
             self.loadImageByUrl(videoCellView, url: videoModel.videoImageUrl!)
         }
         else{
             for view in cell!.subviews {
                 if let v = view as? VideoCellView{
+                    v.imageLayer.contents = UIImage(named: "videoBg1")!.CGImage
+                    
                     self.loadImageByUrl(v, url: videoModel.videoImageUrl!)
                     v.titleLayer.string = videoModel.videoName!
                     v.locationTextLayer.string = videoModel.videoCite
@@ -140,6 +143,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
         cache.fetch(fetcher: fetcher).onSuccess { image in
             // Do something with image
             view.imageLayer.contents = image.CGImage
+            
         }
     }
     

@@ -10,7 +10,6 @@ import Foundation
 
 class VideoCellView: UIView {
     
-    var bgImage:UIImage?
     var titleText:String?
     var locationText:String?
     var videoTimeLongText:String?
@@ -19,8 +18,7 @@ class VideoCellView: UIView {
     var timeTextLayer:CATextLayer!
     var locationTextLayer:CATextLayer
     
-    init(frame: CGRect, bgImage:UIImage, titleText:String, locationText:String, videoTimeLongText:String) {
-        self.bgImage = bgImage
+    init(frame: CGRect, titleText:String, locationText:String, videoTimeLongText:String) {
         self.titleText = titleText
         self.locationText = locationText
         self.videoTimeLongText = videoTimeLongText
@@ -36,11 +34,9 @@ class VideoCellView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        var imageCG = bgImage?.CGImage
-        //image?.drawAtPoint(CGPointZero)
+        
         
         imageLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 45)
-        imageLayer.contents = imageCG
         self.layer.addSublayer(imageLayer)
         
         titleLayer.foregroundColor = UIColor.whiteColor().CGColor

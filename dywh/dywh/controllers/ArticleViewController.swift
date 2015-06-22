@@ -94,10 +94,10 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
        
         if articleCell == nil{
             articleCell = UICollectionViewCell(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30))
-            var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+            var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+            articleView.imageLayer.contents = UIImage(named: "articleImage")?.CGImage
             self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
             articleCell?.contentView.addSubview(articleView)
-            
         }
         else{
             var isAddArticleView:Bool = false
@@ -108,10 +108,12 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
                     self.loadImageByUrl(v, url: articleModel.articleImageUrl!)
                     v.titleLayer.string = articleModel.articleName
                     v.typeLayer.string = articleModel.articleTag
+                    self.loadImageByUrl(v, url: articleModel.articleImageUrl!)
                 }
             }
             if !isAddArticleView{
-                var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), imageName: "articleImage", titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+                var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
+                articleView.imageLayer.contents = UIImage(named: "articleImage")?.CGImage
                 articleCell?.contentView.addSubview(articleView)
                 self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
             }
@@ -129,7 +131,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var articleModel:ArticleModel = articleList[indexPath.row]
         var detailViewController:ArticleDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ArticleDetail") as! ArticleDetailViewController
-        detailViewController.articleId = articleModel.articleId
+        detailViewController.articleModel = articleModel
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
@@ -174,7 +176,6 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
     func loadingArticleDataList(){
         activeIndicatorView.hidden = false
         activeIndicatorView.startAnimating()
-        println("************\(currentPage)")
         Alamofire.request(.GET, ServerUrl.ServerContentURL, parameters: ["content_type":"1","limit":limit,"offset":limit*(currentPage - 1)])
             .responseJSON { (req, res, json, error) in
                 if(error != nil) {

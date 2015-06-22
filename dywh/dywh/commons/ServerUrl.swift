@@ -9,7 +9,7 @@
 import Foundation
 
 enum ServerUrl{
-    static var ServerBaseURL:String = "http://192.168.2.104/hnc"
+    static var ServerBaseURL:String = "http://121.40.16.252/hnc"
     static var ServerContentURL:String = ServerBaseURL + "/articles_ajax/search_by_keyword"
     static var ServerArticleDetailURL:String = ServerBaseURL + "/articles_mobile/"
 }

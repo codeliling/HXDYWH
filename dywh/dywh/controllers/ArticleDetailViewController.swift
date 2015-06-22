@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Haneke
 
-class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestureRecognizerDelegate,UINavigationControllerDelegate{
+class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestureRecognizerDelegate,UINavigationControllerDelegate,UMSocialUIDelegate{
     
     @IBOutlet weak var webView: UIWebView!
     
-    var articleId:Int!
+    var shareUrl:String!
+    var articleModel:ArticleModel!
+    let cache = Shared.imageCache
+    var image:UIImage?
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
@@ -23,30 +27,44 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
         
         var rightButton:UIButton = UIButton(frame: CGRectMake(0, 0, 35, 35))
         rightButton.setImage(UIImage(named: "shareIconWhite"), forState: UIControlState.Normal)
-        rightButton.addTarget(self, action: "shareBtnClick", forControlEvents: UIControlEvents.TouchUpInside)
+        rightButton.addTarget(self, action: "shareBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView:rightButton)
         
         self.navigationController?.interactivePopGestureRecognizer.enabled = true
+        webView.delegate = self
         
+        let URL = NSURL(string: articleModel.articleImageUrl!)!
+        let fetcher = NetworkFetcher<UIImage>(URL: URL)
+        
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            // Do something with image
+            self.image = image
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        webView.loadRequest(NSURLRequest(URL:NSURL(string: ServerUrl.ServerArticleDetailURL + String(articleId))!))
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        shareUrl = ServerUrl.ServerArticleDetailURL + String(articleModel.articleId)
+        webView.loadRequest(NSURLRequest(URL:NSURL(string: shareUrl)!))
         self.tabBarController?.tabBar.hidden = true
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.hidden = false
-        
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         activityIndicatorView.stopAnimating()
@@ -62,8 +80,20 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
         activityIndicatorView.hidden = true
     }
     
-    func shareBtnClick(){
+    func shareBtnClick(rightButton:UIButton){
         println("share content click")
+        UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
+        UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.articleModel.articleName, shareImage: image, shareToSnsNames: [UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
+        
+    }
+    
+    func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
+        println(response.responseCode)
+    }
+    
+    func isDirectShareInIconActionSheet() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
