@@ -14,8 +14,6 @@ class TimerStringTools{
         
         var totalTime:Int = 0
         var timeArray:Array = time.componentsSeparatedByString(":")
-        println(timeArray.count)
-        println("\(timeArray[0]),\(timeArray[1])")
         
         var minutes = 0
         var m = 0
@@ -63,8 +61,6 @@ class TimerStringTools{
         
         var totalTime:Int = 0
         var timeArray:Array = time.componentsSeparatedByString(":")
-        println(timeArray.count)
-        println("\(timeArray[0]),\(timeArray[1])")
         
         var minutes = 0
         var m = 0

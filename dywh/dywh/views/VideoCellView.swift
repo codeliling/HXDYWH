@@ -37,6 +37,7 @@ class VideoCellView: UIView {
         
         
         imageLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 45)
+        imageLayer.contentsGravity = kCAGravityResize
         self.layer.addSublayer(imageLayer)
         
         titleLayer.foregroundColor = UIColor.whiteColor().CGColor

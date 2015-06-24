@@ -54,6 +54,7 @@
 		DBBE71631AAE91A50010681A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBBE71621AAE91A50010681A /* Images.xcassets */; };
 		DBBE71661AAE91A50010681A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBBE71641AAE91A50010681A /* LaunchScreen.xib */; };
 		DBBE71721AAE91A50010681A /* dywhTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE71711AAE91A50010681A /* dywhTests.swift */; };
+		DBC4621C1B3AB45F008D4323 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC4621B1B3AB45F008D4323 /* AboutViewController.swift */; };
 		DBDFCC761B2EB54D00938EDF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDFCC6F1B2EB50000938EDF /* MessageUI.framework */; };
 		DBDFCC921B2EB96A00938EDF /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBDFCC781B2EB96A00938EDF /* UMSocialLocalizable.strings */; };
 		DBDFCC931B2EB96A00938EDF /* libUMSocial_Sdk_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDFCC861B2EB96A00938EDF /* libUMSocial_Sdk_4.2.3.a */; };
@@ -224,6 +225,7 @@
 		DBBE716B1AAE91A50010681A /* dywhTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dywhTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBE71701AAE91A50010681A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBBE71711AAE91A50010681A /* dywhTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dywhTests.swift; sourceTree = "<group>"; };
+		DBC4621B1B3AB45F008D4323 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DBDFCC6F1B2EB50000938EDF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		DBDFCC791B2EB96A00938EDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		DBDFCC7B1B2EB96A00938EDF /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 				DBFA4F981B0F2423007D8F9B /* HXWHViewController.swift */,
 				DBB559741B21F3060069089E /* HomeTabBarController.swift */,
 				DBB559761B229F970069089E /* SettingTableViewController.swift */,
+				DBC4621B1B3AB45F008D4323 /* AboutViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -795,6 +798,7 @@
 				DB1BF9031B0D9000001DA2FC /* UIView+Toast.m in Sources */,
 				DBB559611B21E8810069089E /* VideoMapViewController.swift in Sources */,
 				DB2E1F081ADF542A0049876D /* ArticleView.swift in Sources */,
+				DBC4621C1B3AB45F008D4323 /* AboutViewController.swift in Sources */,
 				DBB559891B251EE70069089E /* ServerUrl.swift in Sources */,
 				DBB559681B21E9C60069089E /* ArticleModel.swift in Sources */,
 				DBFA4F8D1B0F1530007D8F9B /* VideoViewController.swift in Sources */,

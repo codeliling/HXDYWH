@@ -36,8 +36,8 @@ class MusicCellView: UIView {
         
         musicNameTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         musicNameTextLayer.string = musicName
-        musicNameTextLayer.frame = CGRectMake(40, self.frame.origin.y + 5, self.frame.size.width, 20)
-        musicNameTextLayer.fontSize = 20.0
+        musicNameTextLayer.frame = CGRectMake(40, self.frame.origin.y + 5, self.frame.size.width - 30, 25)
+        musicNameTextLayer.fontSize = 19.0
         musicNameTextLayer.contentsScale = 2.0
         musicNameTextLayer.alignmentMode = kCAAlignmentJustified
         musicNameTextLayer.backgroundColor = UIColor.clearColor().CGColor
@@ -45,7 +45,7 @@ class MusicCellView: UIView {
 
         musicAhthorTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         musicAhthorTextLayer.string = musicAuthor
-        musicAhthorTextLayer.frame = CGRectMake(40, self.frame.origin.y + 25, self.frame.size.width, 20)
+        musicAhthorTextLayer.frame = CGRectMake(40, self.frame.origin.y + 30, self.frame.size.width - 30, 20)
         musicAhthorTextLayer.fontSize = 16.0
         musicAhthorTextLayer.contentsScale = 2.0
         musicAhthorTextLayer.alignmentMode = kCAAlignmentJustified

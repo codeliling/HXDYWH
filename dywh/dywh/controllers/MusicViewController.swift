@@ -42,6 +42,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     var currentPage:Int = 1
     let limit:Int = 10
+    var playLayer:UIButton!
     
     var timer:NSTimer?
     var settingTotalTime:Bool = false
@@ -110,7 +111,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         cdView.userInteractionEnabled = true
         musicView.addSubview(cdView)
         
-        var playLayer:UIButton = UIButton()
+        playLayer = UIButton()
         playLayer.setBackgroundImage(UIImage(named: "musicPlayIcon"), forState: UIControlState.Normal)
         playLayer.frame = CGRectMake(UIScreen.mainScreen().bounds.size.width / 2 - 25, 75, 60, 60)
         playLayer.addTarget(self, action: "playBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -141,6 +142,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         mapBtn.selected = false
         
         tableView.addPullToRefreshWithActionHandler{ () -> Void in
+            println(self.currentPage)
             self.loadingMusicDataList()
             self.currentPage++
         }
@@ -175,7 +177,6 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func cycleBtnClick(target:UIButton){
         println("cycleBtnClick")
         
-        
     }
     
     func shareBtnClick(target:UIButton){
@@ -183,7 +184,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func playBtnClick(target:UIButton){
-        
+        println("click......")
         if audioStream != nil{
             println(audioStream!.isPlaying())
             println(audioStream!.isPaused())
@@ -199,15 +200,22 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                 self.CDCycleAnimation(cdView)
             }
         }
-        
-        
     }
     
     func preBtnClick(target:UIButton){
         currentMusicIndex--
         resetPlayMusicStatus()
         if (currentMusicIndex >= 0){
+            var index1:NSIndexPath = NSIndexPath(forRow: currentMusicIndex + 1, inSection: 0)
+            var cell1:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index1) as? MusicTableViewCell
+            cell1?.musicContentView.boardIconLayer.hidden = true
+            
+            var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection: 0)
+            var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
+            cell2?.musicContentView.boardIconLayer.hidden = false
+            
             cdViewAngle = 1.0
+            self.CDCycleAnimation(cdView)
             var musicModel:MusicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
                 audioStream?.stop()
@@ -217,7 +225,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
-            println(audioStream?.totalTime())
+            
         }
         else{
             //show Tips
@@ -228,7 +236,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         currentMusicIndex++
         resetPlayMusicStatus()
         if (currentMusicIndex < musicList.count){
+            
+            var index1:NSIndexPath = NSIndexPath(forRow: currentMusicIndex - 1, inSection: 0)
+            var cell1:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index1) as? MusicTableViewCell
+            cell1?.musicContentView.boardIconLayer.hidden = true
+            
+            var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection:0)
+            var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
+            cell2?.musicContentView.boardIconLayer.hidden = false
+            
             cdViewAngle = 1.0
+            self.CDCycleAnimation(cdView)
             var musicModel:MusicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
                 audioStream?.stop()
@@ -238,7 +256,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             }
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
-            println(audioStream?.totalTime())
+            
         }
         else{
             //show Tips
@@ -252,12 +270,13 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var musicModel:MusicModel = musicList[indexPath.row]
         var cell:MusicTableViewCell? = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? MusicTableViewCell
-       
+        //cell?.shareBtn.center = CGPointMake(UIScreen.mainScreen().bounds.size.width - 50, 30)
+        //cell?.musicContentView.frame = CGRectMake(15, 0, UIScreen.mainScreen().bounds.size.width - 100, 60)
         for view in cell!.contentView.subviews {
             if let v = view as? MusicCellView{
                 cell?.musicContentView.musicAuthor = musicModel.musicAuthor!
                 cell?.musicContentView.musicName = musicModel.musicName!
-                cell?.setNeedsDisplay()
+                cell?.musicContentView.setNeedsDisplay()
             }
         }
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
@@ -280,12 +299,19 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             if audioStream != nil{
                 audioStream?.stop()
             }
-            audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
+            var filePath:String = musicModel.musicFileUrl!
+            var utfFilePath:String = filePath.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            utfFilePath = utfFilePath.stringByReplacingOccurrencesOfString(" ", withString: "")
+            println(utfFilePath)
+            var url:NSURL = NSURL(string: utfFilePath)!
+            audioStream = AudioStreamer(URL: url)
+            
             audioStream?.start()
             resetPlayMusicStatus()
             currentMusicIndex = indexPath.row
             self.CDCycleAnimation(cdView)
             self.startUpdateProgressView()
+            
         }
         
     }
@@ -368,6 +394,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func resetPlayMusicStatus(){
         musicProgressView.progress = 0.0
         settingTotalTime = false
+        cdViewAngle = 1.0
+        playLayer.setBackgroundImage(UIImage(named: "musicPlayIcon"), forState: UIControlState.Normal)
     }
     
     func startUpdateProgressView(){
@@ -376,9 +404,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func updateProgressView(){
-        println(audioStream?.totalTime())
-        println(audioStream?.currentTime())
-        println(audioStream?.duration)
+        
         if audioStream != nil{
             var totalTime = TimerStringTools().getTotleTime(audioStream!.totalTime())
             if totalTime > 0 {
