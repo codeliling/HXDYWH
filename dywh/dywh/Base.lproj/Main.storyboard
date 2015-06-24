@@ -676,59 +676,6 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6bn-4B-Sg1">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6bn-4B-Sg1" id="75V-xt-KCd">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帮助与反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwy-qL-d0D">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="ExF-sT-EfR"/>
-                                                        <constraint firstAttribute="width" constant="128" id="cfA-4T-rh7"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="ExF-sT-EfR"/>
-                                                            <exclude reference="cfA-4T-rh7"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="ExF-sT-EfR"/>
-                                                            <include reference="cfA-4T-rh7"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Zwy-qL-d0D" firstAttribute="top" secondItem="75V-xt-KCd" secondAttribute="topMargin" constant="3" id="Jqy-3l-pCQ"/>
-                                                <constraint firstItem="Zwy-qL-d0D" firstAttribute="leading" secondItem="75V-xt-KCd" secondAttribute="leadingMargin" constant="18" id="cZ1-cz-lXr"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="Zwy-qL-d0D"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="Jqy-3l-pCQ"/>
-                                                    <exclude reference="cZ1-cz-lXr"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="Zwy-qL-d0D"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="Jqy-3l-pCQ"/>
-                                                    <include reference="cZ1-cz-lXr"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="aMp-u7-jvA">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -815,7 +762,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCR-6b-WBD">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">本APP主要介绍“独特的自然生态环境与丰富的非物质文化遗产” 但经济发展落后的少数民族地区，通过合理的生态旅游开发、 信息与物流网络建设、产品与服务系统整合、非物质文化遗产保护等综合的工作方法， 建立一个国际化的设计创新联盟和基于网络的信息平台，参与式的促进当地居民的文化自主意识和产业创新。 在保持当地居民的和谐生活形态和发展需要的前提下，实现从落后的农耕文明社区，不经历资源消耗型的工业发展阶段， 直接“蛙跳”进入以文化和信息为中心的创新社区。</string>
+                                <string key="text">本APP主要介绍独特的自然生态环境与丰富的非物质文化遗产但经济发展落后的少数民族地区，通过合理的生态旅游开发、 信息与物流网络建设、产品与服务系统整合、非物质文化遗产保护等综合的工作方法， 建立一个基于网络的信息平台，参与式的促进当地居民的文化自主意识和产业创新。 在保持当地居民的和谐生活形态和发展需要的前提下，实现从落后的农耕文明社区，不经历资源消耗型的工业发展阶段， 直接“蛙跳”进入以文化和信息为中心的创新社区。</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

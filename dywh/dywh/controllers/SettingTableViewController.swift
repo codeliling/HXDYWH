@@ -26,10 +26,10 @@ class SettingTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = UITableViewCellSelectionStyle.Default
+        //tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = UITableViewCellSelectionStyle.None
         if (indexPath.row == 0){
             cache.removeAll()
-            self.view.makeToast("清除成功！", duration: 2.0, position: CSToastPositionBottom)
+            self.view.makeToast("清除成功！", duration: 2.0, position: CSToastPositionCenter)
         }
         else if (indexPath.row == 1){
         
