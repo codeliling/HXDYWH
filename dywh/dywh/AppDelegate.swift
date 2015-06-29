@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UMSocialData.setAppKey("556a5c3e67e58e57a3003c8a")
         UMSocialWechatHandler.setWXAppId("wx6567681abede8c20", appSecret: "853182c62c7e1f2d6398479cdd482bfe", url: "http://www.umeng.com/social");
+        UMSocialQQHandler.setQQWithAppId("1104737822", appKey: "q13dhXSo7j2uDLeP", url: "http://www.umeng.com/social")
         UMSocialData.defaultData().extConfig.wxMessageType = UMSocialWXMessageTypeApp
         return true
     }

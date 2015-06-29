@@ -16,4 +16,5 @@
 #import "libs/SVPullToRefresh/SVPullToRefresh.h"
 #import "libs/UMSocial_Sdk_4.2.3/Header/UMSocial.h"
 #import "libs/Wechat/UMSocialWechatHandler.h"
+#import "libs/TencentOpenAPI/UMSocialQQHandler.h"
 #endif

@@ -205,7 +205,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func preBtnClick(target:UIButton){
         currentMusicIndex--
         resetPlayMusicStatus()
-        if (currentMusicIndex >= 0){
+        if (currentMusicIndex >= 0 && currentMusicIndex < musicList.count){
             var index1:NSIndexPath = NSIndexPath(forRow: currentMusicIndex + 1, inSection: 0)
             var cell1:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index1) as? MusicTableViewCell
             cell1?.musicContentView.boardIconLayer.hidden = true
@@ -213,8 +213,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection: 0)
             var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
             cell2?.musicContentView.boardIconLayer.hidden = false
-            
-            cdViewAngle = 1.0
+            cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
             var musicModel:MusicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
@@ -229,13 +228,14 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         }
         else{
             //show Tips
+             self.view.makeToast("无上一首！", duration: 1.0, position: kCAGravityBottom)
         }
     }
     
     func nextBtnClick(target:UIButton){
         currentMusicIndex++
         resetPlayMusicStatus()
-        if (currentMusicIndex < musicList.count){
+        if (currentMusicIndex >= 0 && currentMusicIndex < musicList.count){
             
             var index1:NSIndexPath = NSIndexPath(forRow: currentMusicIndex - 1, inSection: 0)
             var cell1:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index1) as? MusicTableViewCell
@@ -244,8 +244,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection:0)
             var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
             cell2?.musicContentView.boardIconLayer.hidden = false
-            
-            cdViewAngle = 1.0
+            cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
             var musicModel:MusicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
@@ -260,6 +259,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         }
         else{
             //show Tips
+            self.view.makeToast("无下一首！", duration: 1.0, position: kCAGravityBottom)
         }
     }
     
@@ -284,8 +284,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell:MusicTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! MusicTableViewCell
-        cell.musicContentView.boardIconLayer.hidden = true
+        var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(indexPath) as? MusicTableViewCell
+        cell?.musicContentView.boardIconLayer.hidden = true
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -376,7 +376,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     func CDCycleAnimation(cdView:UIView){
         var endAngle:CGAffineTransform = CGAffineTransformMakeRotation(cdViewAngle * CGFloat(M_PI / 180.0));
         
-        UIView.animateWithDuration(0.01, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             cdView.transform = endAngle
         }) { (Bool) -> Void in
             self.cdViewAngle += 2.0

@@ -82,9 +82,13 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     func shareBtnClick(rightButton:UIButton){
         println("share content click")
+       
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.articleModel.articleName, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToTencent,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
         UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
         UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.articleModel.articleName, shareImage: image, shareToSnsNames: [UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
+        UMSocialData.defaultData().extConfig.wechatFavoriteData.url = self.shareUrl
+        UMSocialData.defaultData().extConfig.qqData.url = self.shareUrl
+        UMSocialData.defaultData().extConfig.qzoneData.url = self.shareUrl
     }
     
     func didFinishGetUMSocialDataInViewController(response: UMSocialResponseEntity!) {
