@@ -41,6 +41,7 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
             // Do something with image
             self.image = image
         }
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -50,10 +51,9 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
         shareUrl = ServerUrl.ServerArticleDetailURL + String(articleModel.articleId)
         webView.loadRequest(NSURLRequest(URL:NSURL(string: shareUrl)!))
-        self.tabBarController?.tabBar.hidden = true
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -64,7 +64,7 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
+   
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         activityIndicatorView.stopAnimating()
@@ -99,9 +99,15 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
         return true
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    deinit{
+        println("#######**********")
+    }
+
     
 }

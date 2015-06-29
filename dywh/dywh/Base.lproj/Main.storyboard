@@ -515,7 +515,7 @@
                         <outlet property="collectionView" destination="GTg-DQ-tnW" id="ubu-Wm-Xpx"/>
                         <outlet property="listBtn" destination="IuY-aT-Zrt" id="1yI-sH-1l2"/>
                         <outlet property="mapBtn" destination="1ki-E0-Vn0" id="XZ6-qq-Re1"/>
-                        <segue destination="CTS-3L-bUP" kind="push" id="9k8-W9-1vQ"/>
+                        <segue destination="CTS-3L-bUP" kind="push" id="irB-eY-RDV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQM-Xt-ZSN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -540,16 +540,18 @@
                             </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ncu-v7-4Ff">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="177" y="300" width="20" height="20"/>
+                                </variation>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Cim-BO-3o1" secondAttribute="trailing" constant="-16" id="0nh-tZ-I1b"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Cim-BO-3o1" secondAttribute="bottom" constant="-50" id="C9k-c2-MBd"/>
-                            <constraint firstItem="Cim-BO-3o1" firstAttribute="top" secondItem="gRk-Ce-GSo" secondAttribute="bottom" id="Wr5-CF-3wD"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Cim-BO-3o1" secondAttribute="bottom" constant="-50" id="2rL-52-TRH"/>
+                            <constraint firstItem="Cim-BO-3o1" firstAttribute="top" secondItem="gRk-Ce-GSo" secondAttribute="bottom" id="UxV-lC-QpH"/>
                             <constraint firstAttribute="centerX" secondItem="ncu-v7-4Ff" secondAttribute="centerX" id="YlV-U4-dKI"/>
+                            <constraint firstItem="Cim-BO-3o1" firstAttribute="leading" secondItem="eub-GR-9gK" secondAttribute="leadingMargin" constant="-16" id="bxT-xc-kUL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cim-BO-3o1" secondAttribute="trailing" constant="-16" id="cZT-Bh-cnD"/>
                             <constraint firstAttribute="centerY" secondItem="ncu-v7-4Ff" secondAttribute="centerY" id="fGT-2t-mDT"/>
-                            <constraint firstItem="Cim-BO-3o1" firstAttribute="leading" secondItem="eub-GR-9gK" secondAttribute="leadingMargin" constant="-16" id="fan-L5-mZU"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -557,12 +559,12 @@
                                 <exclude reference="ncu-v7-4Ff"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="2rL-52-TRH"/>
+                                <exclude reference="UxV-lC-QpH"/>
+                                <exclude reference="bxT-xc-kUL"/>
+                                <exclude reference="cZT-Bh-cnD"/>
                                 <exclude reference="YlV-U4-dKI"/>
                                 <exclude reference="fGT-2t-mDT"/>
-                                <exclude reference="0nh-tZ-I1b"/>
-                                <exclude reference="C9k-c2-MBd"/>
-                                <exclude reference="Wr5-CF-3wD"/>
-                                <exclude reference="fan-L5-mZU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -571,16 +573,17 @@
                                 <include reference="ncu-v7-4Ff"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="2rL-52-TRH"/>
+                                <include reference="UxV-lC-QpH"/>
+                                <include reference="bxT-xc-kUL"/>
+                                <include reference="cZT-Bh-cnD"/>
                                 <include reference="YlV-U4-dKI"/>
                                 <include reference="fGT-2t-mDT"/>
-                                <include reference="0nh-tZ-I1b"/>
-                                <include reference="C9k-c2-MBd"/>
-                                <include reference="Wr5-CF-3wD"/>
-                                <include reference="fan-L5-mZU"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="文章详情" id="k6s-rD-b1n"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="ncu-v7-4Ff" id="q1f-8f-bbG"/>
                         <outlet property="webView" destination="Cim-BO-3o1" id="SOh-jb-rFR"/>
