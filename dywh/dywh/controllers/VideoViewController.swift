@@ -87,7 +87,7 @@ class VideoViewController: HXWHViewController, UITableViewDataSource, UITableVie
                 reuseIdentifier: identifier)
             cell?.frame = CGRectMake(0, 0, tableView.frame.size.width, 200)
             cell?.backgroundColor = UIColor.blackColor()
-            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), titleText: videoModel.videoName!, locationText: videoModel.videoCite!, videoTimeLongText: "")
+            var videoCellView:VideoCellView = VideoCellView(frame: CGRectMake(0, 0, tableView.frame.size.width, 200), titleText: videoModel.videoName!, locationText: videoModel.videoCite!, videoTimeLongText: "",shareUrl:videoModel.videoFileUrl!,image:UIImage(named: "videoBg1")!,controller:self)
             videoCellView.imageLayer.contents = UIImage(named: "videoBg1")!.CGImage
             cell?.addSubview(videoCellView)
             self.loadImageByUrl(videoCellView, url: videoModel.videoImageUrl!)

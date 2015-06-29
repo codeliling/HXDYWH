@@ -104,10 +104,5 @@ class ArticleDetailViewController: HXWHViewController,UIWebViewDelegate ,UIGestu
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    deinit{
-        println("#######**********")
-    }
-
-    
+      
 }

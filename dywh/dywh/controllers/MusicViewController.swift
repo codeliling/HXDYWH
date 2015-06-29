@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Haneke
 
-class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewDelegate {
+class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewDelegate,UMSocialUIDelegate {
     
     var mapViewController:MusicMapViewController?
     let cache = Shared.imageCache
@@ -43,11 +43,13 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     var currentPage:Int = 1
     let limit:Int = 10
     var playLayer:UIButton!
-    
+    var shareUrl:String!
     var timer:NSTimer?
     var settingTotalTime:Bool = false
     var leftTimerLayer:CATextLayer!
     var rightTimerLayer:CATextLayer!
+    var musicModel:MusicModel!
+    var image:UIImage?
     
     @IBOutlet weak var musicProgressView: UIProgressView!
     
@@ -180,7 +182,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func shareBtnClick(target:UIButton){
-    
+        if musicModel != nil {
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.musicModel.musicName, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToTencent,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
+            UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatFavoriteData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qqData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qzoneData.url = self.shareUrl
+        }
+        else{
+            self.view.makeToast("无分享数据", duration: 2.0, position: kCAGravityBottom)
+        }
     }
     
     func playBtnClick(target:UIButton){
@@ -215,13 +227,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             cell2?.musicContentView.boardIconLayer.hidden = false
             cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
-            var musicModel:MusicModel = musicList[currentMusicIndex]
+            musicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
                 audioStream?.stop()
             }
             else if let pause = audioStream?.isPaused(){
                 audioStream?.stop()
             }
+            if musicModel.musicImageUrl != nil{
+                initImageData(musicModel.musicImageUrl!)
+            }
+            shareUrl = musicModel.musicFileUrl!
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
             
@@ -246,13 +262,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             cell2?.musicContentView.boardIconLayer.hidden = false
             cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
-            var musicModel:MusicModel = musicList[currentMusicIndex]
+            musicModel = musicList[currentMusicIndex]
             if let playing = audioStream?.isPlaying(){
                 audioStream?.stop()
             }
             else if let pause = audioStream?.isPaused(){
                 audioStream?.stop()
             }
+            if musicModel.musicImageUrl != nil{
+                initImageData(musicModel.musicImageUrl!)
+            }
+            shareUrl = musicModel.musicFileUrl!
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
             
@@ -292,28 +312,30 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(indexPath) as? MusicTableViewCell
         cell?.musicContentView.boardIconLayer.hidden = false
         
-        var musicModel:MusicModel = musicList[indexPath.row]
+        musicModel = musicList[indexPath.row]
         musicNameLayer.string = musicModel.musicName
         authorNameLayer.string = musicModel.musicAuthor
         if (musicModel.musicFileUrl != nil){
             if audioStream != nil{
                 audioStream?.stop()
             }
+            if musicModel.musicImageUrl != nil{
+                initImageData(musicModel.musicImageUrl!)
+            }
+            
             var filePath:String = musicModel.musicFileUrl!
             var utfFilePath:String = filePath.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             utfFilePath = utfFilePath.stringByReplacingOccurrencesOfString(" ", withString: "")
             println(utfFilePath)
+            shareUrl = musicModel.musicFileUrl!
             var url:NSURL = NSURL(string: utfFilePath)!
             audioStream = AudioStreamer(URL: url)
-            
             audioStream?.start()
             resetPlayMusicStatus()
             currentMusicIndex = indexPath.row
             self.CDCycleAnimation(cdView)
             self.startUpdateProgressView()
-            
         }
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -428,6 +450,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
                 timer!.invalidate()
             }
         }
+    }
+    
+    func initImageData(url:String){
+        let URL = NSURL(string: url)!
+        let fetcher = NetworkFetcher<UIImage>(URL: URL)
+            
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            // Do something with image
+            self.image = image
+        }
+        
     }
     
     override func viewDidDisappear(animated: Bool) {

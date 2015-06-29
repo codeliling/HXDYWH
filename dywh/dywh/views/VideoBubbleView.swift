@@ -30,6 +30,8 @@ class VideoBubbleView: UIView {
         titleLayer.frame = CGRectMake(5, 10, self.frame.width - self.frame.height - 5, self.frame.height - 20)
         titleLayer.fontSize = 18.0
         titleLayer.contentsScale = 2.0
+        titleLayer.wrapped = true
+        titleLayer.truncationMode = kCATruncationEnd
         self.layer.addSublayer(titleLayer)
         
         iconLayer.frame = CGRectMake(self.frame.width - self.frame.height, 3, self.frame.height - 5, self.frame.height - 5)

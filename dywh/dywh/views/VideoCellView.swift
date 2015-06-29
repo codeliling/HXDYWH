@@ -17,11 +17,18 @@ class VideoCellView: UIView {
     var titleLayer:CATextLayer!
     var timeTextLayer:CATextLayer!
     var locationTextLayer:CATextLayer
+    var shareUrl:String?
+    var image:UIImage?
+    var controller:UIViewController?
     
-    init(frame: CGRect, titleText:String, locationText:String, videoTimeLongText:String) {
+    init(frame: CGRect, titleText:String, locationText:String, videoTimeLongText:String,
+        shareUrl:String,image:UIImage,controller:UIViewController) {
         self.titleText = titleText
         self.locationText = locationText
         self.videoTimeLongText = videoTimeLongText
+        self.shareUrl = shareUrl
+        self.image = image
+        self.controller = controller
         imageLayer = CALayer()
         titleLayer = CATextLayer()
         timeTextLayer = CATextLayer()
@@ -46,6 +53,8 @@ class VideoCellView: UIView {
         titleLayer.fontSize = 16.0
         titleLayer.contentsScale = 2.0
         titleLayer.alignmentMode = kCAAlignmentJustified
+        titleLayer.wrapped = true
+        titleLayer.truncationMode = kCATruncationEnd
         self.layer.addSublayer(titleLayer)
         
         var videoIcon:CALayer = CALayer()
@@ -63,10 +72,11 @@ class VideoCellView: UIView {
         timeIcon.contents = UIImage(named: "timeIcon")?.CGImage
         self.layer.addSublayer(timeIcon)
         
-        var shareIcon:CALayer = CALayer()
+        var shareIcon:UIButton = UIButton()
         shareIcon.frame = CGRectMake(self.frame.size.width - 40, self.frame.size.height - 40, 30, 30)
-        shareIcon.contents = UIImage(named: "shareIconWhite")?.CGImage
-        self.layer.addSublayer(shareIcon)
+        shareIcon.setBackgroundImage(UIImage(named: "shareIconWhite"), forState: UIControlState.Normal)
+        shareIcon.addTarget(self, action:"shareIconClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(shareIcon)
         
         timeTextLayer.foregroundColor = UIColor.whiteColor().CGColor
         timeTextLayer.string = videoTimeLongText
@@ -83,5 +93,20 @@ class VideoCellView: UIView {
         locationTextLayer.contentsScale = 2.0
         locationTextLayer.alignmentMode = kCAAlignmentJustified
         self.layer.addSublayer(locationTextLayer)
+    }
+    
+    func shareIconClick(btn:UIButton){
+        println("video share....")
+        if shareUrl != nil {
+            UMSocialSnsService.presentSnsIconSheetView(controller, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.titleText, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToTencent,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: nil)
+            UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatFavoriteData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qqData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qzoneData.url = self.shareUrl
+        }
+        else{
+            self.makeToast("无分享数据", duration: 2.0, position: kCAGravityBottom)
+        }
     }
 }

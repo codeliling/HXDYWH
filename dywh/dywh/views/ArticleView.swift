@@ -44,11 +44,13 @@ class ArticleView: UIView {
         
         titleLayer.foregroundColor = UIColor.whiteColor().CGColor
         titleLayer.string = titleName
-        titleLayer.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width - 30, 20)
+        titleLayer.frame = CGRectMake(0, self.frame.size.height - 25, self.frame.size.width - 45, 20)
         titleLayer.fontSize = 16.0
         titleLayer.contentsScale = 2.0
         titleLayer.alignmentMode = kCAAlignmentJustified
         titleLayer.backgroundColor = UIColor.clearColor().CGColor
+        titleLayer.wrapped = true
+        titleLayer.truncationMode = kCATruncationEnd
         self.layer.addSublayer(titleLayer)
         
         typeLayer.frame = CGRectMake(self.frame.size.width - 40, self.frame.size.height - 25, 30, 20)

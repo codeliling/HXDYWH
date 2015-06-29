@@ -35,6 +35,8 @@ class MapArticlePanelView: UIView {
         titleLayer.fontSize = 22.0
         titleLayer.string = title
         titleLayer.contentsScale = 2.0
+        titleLayer.wrapped = true
+        titleLayer.truncationMode = kCATruncationEnd
         self.layer.addSublayer(titleLayer)
         
         descriptionLayer.frame = CGRectMake(self.frame.width / 7 * 3 + 10, 10 + self.frame.height / 3, self.frame.width / 7 * 3, self.frame.height / 3 * 2 - 5)

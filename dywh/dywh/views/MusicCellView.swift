@@ -41,6 +41,8 @@ class MusicCellView: UIView {
         musicNameTextLayer.contentsScale = 2.0
         musicNameTextLayer.alignmentMode = kCAAlignmentJustified
         musicNameTextLayer.backgroundColor = UIColor.clearColor().CGColor
+        musicNameTextLayer.wrapped = true
+        musicNameTextLayer.truncationMode = kCATruncationEnd
         self.layer.addSublayer(musicNameTextLayer)
 
         musicAhthorTextLayer.foregroundColor = UIColor.whiteColor().CGColor
