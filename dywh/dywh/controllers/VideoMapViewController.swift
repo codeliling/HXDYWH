@@ -94,6 +94,9 @@ class VideoMapViewController: HXWHViewController,BMKMapViewDelegate {
             player.play()
             
             self.presentMoviePlayerViewControllerAnimated(mp)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("CloseMusicNotification", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("MapCloseMusicNotification", object: nil)
         }
     }
     

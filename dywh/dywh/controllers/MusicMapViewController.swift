@@ -107,11 +107,13 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
         musicPanel.addSubview(progressView)
         self.view.addSubview(musicPanel)
         musicPanel.hidden = true
+        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "closeMusicOfReceivedNotification:", name: "MapCloseMusicNotification", object: nil)
     }
     
     
     func mapView(mapView: BMKMapView!, didSelectAnnotationView view: BMKAnnotationView!) {
-        println("************")
+        
         var title:String = view.annotation.title!()
         
         for mModle in musicList{
@@ -255,4 +257,15 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func closeMusicOfReceivedNotification(notification:NSNotification){
+        if audioStream != nil{
+            if audioStream!.isPlaying(){
+                audioStream?.stop()
+            }
+        }
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "MapCloseMusicNotification", object: nil)
+    }
 }

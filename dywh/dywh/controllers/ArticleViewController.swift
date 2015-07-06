@@ -95,7 +95,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
         if articleCell == nil{
             articleCell = UICollectionViewCell(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30))
             var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
-            articleView.imageLayer.contents = UIImage(named: "articleImage")?.CGImage
+            articleView.imageLayer.contents = UIImage(named: "article_loading")?.CGImage
             self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
             articleCell?.contentView.addSubview(articleView)
         }
@@ -113,7 +113,7 @@ class ArticleViewController: HXWHViewController,UICollectionViewDataSource, UICo
             }
             if !isAddArticleView{
                 var articleView:ArticleView = ArticleView(frame: CGRectMake(0, 0, imageWidth, imageWidth - 30), titleName: articleModel.articleName!, tagName:articleModel.articleTag!)
-                articleView.imageLayer.contents = UIImage(named: "articleImage")?.CGImage
+                articleView.imageLayer.contents = UIImage(named: "article_loading")?.CGImage
                 articleCell?.contentView.addSubview(articleView)
                 self.loadImageByUrl(articleView, url: articleModel.articleImageUrl!)
             }

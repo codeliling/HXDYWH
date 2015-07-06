@@ -148,6 +148,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             self.loadingMusicDataList()
             self.currentPage++
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "closeMusicOfReceivedNotification:", name: "CloseMusicNotification", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -471,5 +473,17 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func closeMusicOfReceivedNotification(notification:NSNotification){
+        if audioStream != nil{
+            if audioStream!.isPlaying(){
+                audioStream?.stop()
+            }
+        }
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CloseMusicNotification", object: nil)
     }
 }
