@@ -50,6 +50,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     var rightTimerLayer:CATextLayer!
     var musicModel:MusicModel!
     var image:UIImage?
+    var lastIndexPath:NSIndexPath?
     
     @IBOutlet weak var musicProgressView: UIProgressView!
     
@@ -70,6 +71,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
         cyclePlayBtn.setBackgroundImage(UIImage(named: "musicCyclePlay"), forState: UIControlState.Normal)
         cyclePlayBtn.frame = CGRectMake(20, 10, 30, 30)
         cyclePlayBtn.addTarget(self, action: "cycleBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        cyclePlayBtn.hidden = true
         musicView.addSubview(cyclePlayBtn)
         
         shareBtn = UIButton()
@@ -185,7 +187,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     
     func shareBtnClick(target:UIButton){
         if musicModel != nil {
-            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.musicModel.musicName, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToTencent,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.musicModel.musicName, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
             UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
             UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
             UMSocialData.defaultData().extConfig.wechatFavoriteData.url = self.shareUrl
@@ -227,6 +229,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection: 0)
             var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
             cell2?.musicContentView.boardIconLayer.hidden = false
+            lastIndexPath = index2
             cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
             musicModel = musicList[currentMusicIndex]
@@ -242,6 +245,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             shareUrl = musicModel.musicFileUrl!
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
+            musicNameLayer.string = musicModel.musicName
+            authorNameLayer.string = musicModel.musicAuthor
             
         }
         else{
@@ -262,6 +267,7 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             var index2:NSIndexPath = NSIndexPath(forRow: currentMusicIndex, inSection:0)
             var cell2:MusicTableViewCell? = tableView.cellForRowAtIndexPath(index2) as? MusicTableViewCell
             cell2?.musicContentView.boardIconLayer.hidden = false
+            lastIndexPath = index2
             cycleAnimationFlag = true
             self.CDCycleAnimation(cdView)
             musicModel = musicList[currentMusicIndex]
@@ -277,6 +283,8 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
             shareUrl = musicModel.musicFileUrl!
             audioStream = AudioStreamer(URL: NSURL(string: musicModel.musicFileUrl!))
             audioStream?.start()
+            musicNameLayer.string = musicModel.musicName
+            authorNameLayer.string = musicModel.musicAuthor
             
         }
         else{
@@ -311,8 +319,15 @@ class MusicViewController: HXWHViewController,UITableViewDataSource,UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (lastIndexPath != nil){
+            var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(lastIndexPath!) as? MusicTableViewCell
+            cell?.musicContentView.boardIconLayer.hidden = true
+        }
+        
         var cell:MusicTableViewCell? = tableView.cellForRowAtIndexPath(indexPath) as? MusicTableViewCell
         cell?.musicContentView.boardIconLayer.hidden = false
+        lastIndexPath = indexPath
         
         musicModel = musicList[indexPath.row]
         musicNameLayer.string = musicModel.musicName

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Haneke
 
-class MusicMapViewController: UIViewController,BMKMapViewDelegate {
-    
+class MusicMapViewController: UIViewController,BMKMapViewDelegate, UMSocialUIDelegate{
+     let cache = Shared.imageCache
     var mapView:BMKMapView!
     var musicList:[MusicModel] = []
     var musicModel:MusicModel?
@@ -26,6 +27,8 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
     var cycleAnimationFlag:Bool = true
     var timer:NSTimer?
     var settingTotalTime:Bool = false
+    var shareUrl:String!
+    var image:UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +106,8 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
         self.musicPanel.layer.addSublayer(rightTimeLayer)
         
         progressView = UIProgressView(frame: CGRectMake(0, 68, UIScreen.mainScreen().bounds.size.width - 20, 2))
-        progressView.trackTintColor = UIColor(red: 229/255.0, green: 0, blue: 55.0/255.0, alpha: 1.0)
+        progressView.progressTintColor = UIColor(red: 229/255.0, green: 0, blue: 55.0/255.0, alpha: 1.0)
+        progressView.trackTintColor = UIColor(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1.0)
         musicPanel.addSubview(progressView)
         self.view.addSubview(musicPanel)
         musicPanel.hidden = true
@@ -126,6 +130,7 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
             musicPanel.hidden = false
             musicName.string = musicModel?.musicName
             musicAuthor.string = musicModel?.musicAuthor
+            shareUrl = musicModel?.musicFileUrl
             audioStream = AudioStreamer(URL: NSURL(string: musicModel!.musicFileUrl!))
         }
     }
@@ -184,7 +189,17 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
     }
     
     func shareBtnClick(button:UIButton){
-    
+        if musicModel != nil {
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "556a5c3e67e58e57a3003c8a", shareText: self.musicModel?.musicName, shareImage: image, shareToSnsNames: [UMShareToQzone,UMShareToQQ,UMShareToSms,UMShareToWechatFavorite,UMShareToWechatSession,UMShareToWechatTimeline], delegate: self)
+            UMSocialData.defaultData().extConfig.wechatSessionData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatTimelineData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.wechatFavoriteData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qqData.url = self.shareUrl
+            UMSocialData.defaultData().extConfig.qzoneData.url = self.shareUrl
+        }
+        else{
+            self.view.makeToast("无分享数据", duration: 2.0, position: kCAGravityBottom)
+        }
     }
 
     func CDCycleAnimation(cdView:UIView){
@@ -263,6 +278,17 @@ class MusicMapViewController: UIViewController,BMKMapViewDelegate {
                 audioStream?.stop()
             }
         }
+    }
+    
+    func initImageData(url:String){
+        let URL = NSURL(string: url)!
+        let fetcher = NetworkFetcher<UIImage>(URL: URL)
+        
+        cache.fetch(fetcher: fetcher).onSuccess { image in
+            // Do something with image
+            self.image = image
+        }
+        
     }
     
     deinit{
